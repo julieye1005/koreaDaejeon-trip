@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>清州・大田・世宗五日行</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700;900&family=Noto+Sans+TC:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F5EEDF;
+    --paper-deep:#EFE4CC;
+    --ink:#2B241C;
+    --ink-soft:#5B5347;
+    --maple:#9E3A2B;
+    --maple-deep:#7A2A1F;
+    --ginkgo:#CF9A2E;
+    --ginkgo-light:#E8C468;
+    --pine:#3C4A34;
+    --line:rgba(43,36,28,0.14);
+    --card:#FBF7EC;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Noto Sans TC",sans-serif;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.serif{font-family:"Noto Serif TC",serif;}
+  .accent-num{font-family:"Cormorant Garamond",serif;}
+
+  /* ---------- background texture ---------- */
+  .leaf-field{
+    position:fixed; inset:0; pointer-events:none; z-index:0; opacity:0.5;
+  }
+
+  /* ---------- nav ---------- */
+  nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(245,238,223,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+    overflow-x:auto;
+    white-space:nowrap;
+    padding:12px 20px;
+  }
+  nav a{
+    color:var(--ink-soft);
+    text-decoration:none;
+    font-size:13.5px;
+    margin-right:22px;
+    padding-bottom:4px;
+    border-bottom:2px solid transparent;
+    transition:color .25s, border-color .25s;
+  }
+  nav a:hover{color:var(--maple); border-color:var(--ginkgo);}
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;
+    padding:88px 24px 70px;
+    text-align:center;
+    overflow:hidden;
+    background:
+      radial-gradient(ellipse at 18% 18%, rgba(207,154,46,0.22), transparent 45%),
+      radial-gradient(ellipse at 85% 12%, rgba(158,58,43,0.18), transparent 42%),
+      var(--paper);
+    border-bottom:1px solid var(--line);
+  }
+  .hero .eyebrow{
+    font-family:"Cormorant Garamond",serif;
+    font-style:italic;
+    font-size:18px;
+    letter-spacing:0.14em;
+    color:var(--maple);
+    margin-bottom:18px;
+  }
+  .hero h1{
+    font-size:clamp(38px,7vw,66px);
+    line-height:1.25;
+    margin:0 0 20px;
+    font-weight:900;
+    color:var(--ink);
+  }
+  .hero h1 .r{color:var(--maple);}
+  .hero h1 .g{color:var(--ginkgo);}
+  .hero .sub{
+    font-size:16px;
+    color:var(--ink-soft);
+    max-width:480px;
+    margin:0 auto 34px;
+  }
+  .hero .dates{
+    display:inline-flex;
+    gap:14px;
+    align-items:center;
+    font-family:"Cormorant Garamond",serif;
+    font-size:24px;
+    color:var(--pine);
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    padding:14px 30px;
+  }
+  .hero .dates .dot{width:5px;height:5px;border-radius:50%;background:var(--ginkgo);}
+
+  svg.deco-leaf{position:absolute; opacity:0.85;}
+
+  /* ---------- section shell ---------- */
+  section{
+    max-width:880px;
+    margin:0 auto;
+    padding:70px 24px;
+    position:relative;
+    z-index:1;
+  }
+  section + section{border-top:1px solid var(--line);}
+  .section-head{margin-bottom:36px;}
+  .section-head .kicker{
+    font-family:"Cormorant Garamond",serif;
+    font-style:italic;
+    color:var(--maple);
+    font-size:16px;
+    margin-bottom:6px;
+    display:block;
+  }
+  .section-head h2{font-size:28px; margin:0; color:var(--ink);}
+
+  /* ---------- info grid ---------- */
+  .info-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:18px;}
+  @media(max-width:640px){.info-grid{grid-template-columns:1fr;}}
+  .info-card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:2px;
+    padding:22px 24px;
+    position:relative;
+  }
+  .info-card::before{
+    content:"";
+    position:absolute; top:0; left:0; width:100%; height:3px;
+    background:linear-gradient(90deg,var(--maple),var(--ginkgo));
+  }
+  .info-card h3{margin:0 0 12px; font-size:16px; display:flex; align-items:center; gap:8px;}
+  .info-card p{margin:4px 0; font-size:14.5px; color:var(--ink-soft);}
+  .info-card .big{font-size:20px; color:var(--ink); font-weight:600; font-family:"Noto Serif TC",serif;}
+  .info-card .flight-route{
+    display:flex; align-items:center; gap:10px; margin:10px 0;
+    font-family:"Cormorant Garamond",serif; font-size:22px; color:var(--pine);
+  }
+  .info-card .flight-route .arrow{color:var(--ginkgo);}
+  .badge{
+    display:inline-block; font-size:12px; padding:2px 10px;
+    border:1px solid var(--maple); color:var(--maple); border-radius:20px;
+    margin-top:8px;
+  }
+  .badge.pending{border-color:var(--ginkgo); color:#93700f; background:rgba(207,154,46,0.12);}
+
+  /* ---------- overview cards ---------- */
+  .overview-list{display:flex; flex-direction:column; gap:12px;}
+  .overview-item{
+    display:flex; align-items:baseline; gap:20px;
+    padding:18px 22px;
+    background:var(--card);
+    border:1px solid var(--line);
+    text-decoration:none;
+    color:var(--ink);
+    transition:transform .2s, border-color .2s;
+  }
+  .overview-item:hover{transform:translateX(4px); border-color:var(--maple);}
+  .overview-item .d-num{
+    font-family:"Cormorant Garamond",serif;
+    font-size:30px; color:var(--maple); min-width:80px;
+  }
+  .overview-item .d-body strong{display:block; font-size:16px; margin-bottom:3px;}
+  .overview-item .d-body span{font-size:13.5px; color:var(--ink-soft);}
+
+  /* ---------- day sections ---------- */
+  .day-tag{
+    display:inline-flex; align-items:center; gap:10px;
+    background:var(--pine); color:#F5EEDF;
+    padding:6px 16px; font-size:13px; letter-spacing:0.04em;
+    margin-bottom:16px;
+  }
+  .day-title{font-size:30px; margin:0 0 6px;}
+  .day-desc{color:var(--ink-soft); font-size:14.5px; margin-bottom:36px;}
+
+  .timeline{position:relative; padding-left:26px; border-left:2px solid var(--line);}
+  .t-item{position:relative; padding-bottom:30px;}
+  .t-item:last-child{padding-bottom:0;}
+  .t-item::before{
+    content:""; position:absolute; left:-32px; top:4px;
+    width:11px; height:11px; border-radius:50%;
+    background:var(--paper); border:2px solid var(--maple);
+  }
+  .t-time{
+    font-family:"Cormorant Garamond",serif; font-weight:600;
+    color:var(--maple); font-size:19px; margin-bottom:4px;
+  }
+  .t-title{font-weight:700; font-size:16px; margin-bottom:5px;}
+  .t-desc{font-size:14px; color:var(--ink-soft); margin-bottom:6px;}
+  .t-desc + .t-desc{margin-top:-2px;}
+  .t-note{
+    font-size:13px; color:var(--maple-deep);
+    background:rgba(158,58,43,0.07);
+    border-left:2px solid var(--maple);
+    padding:8px 12px; margin-top:8px;
+  }
+  .t-tips{
+    font-size:12.5px; color:var(--ink-soft);
+    background:var(--paper-deep);
+    padding:8px 12px; margin-top:8px; border-radius:2px;
+  }
+
+  .meal-strip{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:1px;
+    background:var(--line); margin-top:40px; border:1px solid var(--line);
+  }
+  @media(max-width:640px){.meal-strip{grid-template-columns:1fr;}}
+  .meal-strip div{background:var(--card); padding:16px 18px;}
+  .meal-strip .meal-label{font-size:11px; letter-spacing:0.08em; color:var(--ginkgo); display:block; margin-bottom:6px;}
+  .meal-strip .meal-val{font-size:14px;}
+
+  .day-nav{display:flex; justify-content:space-between; margin-top:44px; font-size:14px;}
+  .day-nav a{color:var(--maple); text-decoration:none;}
+  .day-nav a:hover{text-decoration:underline;}
+
+  /* ---------- packing ---------- */
+  .pack-alert{
+    display:flex; gap:16px; align-items:flex-start;
+    background:var(--card); border:1px solid var(--maple);
+    padding:22px 26px; margin-top:10px;
+  }
+  .pack-alert .icon{font-size:26px;}
+  .pack-alert strong{display:block; margin-bottom:4px; font-size:16px;}
+  .pack-alert p{margin:0; color:var(--ink-soft); font-size:14.5px;}
+
+  /* ---------- budget ---------- */
+  .budget-list{
+    background:var(--card);
+    border:1px solid var(--line);
+  }
+  .budget-row{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:20px 26px;
+    border-bottom:1px solid var(--line);
+    gap:16px;
+  }
+  .budget-row:last-child{border-bottom:none;}
+  .budget-label{
+    display:flex; align-items:center; gap:12px;
+    font-size:15px; color:var(--ink);
+  }
+  .budget-label .ico{font-size:18px;}
+  .budget-amount{
+    font-family:"Cormorant Garamond",serif;
+    font-size:22px; color:var(--maple);
+    text-align:right;
+    white-space:nowrap;
+  }
+  .budget-amount .sub-cur{font-size:13px; color:var(--ink-soft); font-family:"Noto Sans TC",sans-serif; margin-left:6px;}
+  .budget-amount.pending{color:var(--ink-soft); font-size:15px; font-family:"Noto Sans TC",sans-serif;}
+  .budget-note{
+    padding:16px 26px; font-size:13px; color:var(--ink-soft);
+    background:var(--paper-deep);
+    border-top:1px solid var(--line);
+  }
+
+  footer{
+    text-align:center; padding:50px 24px 70px; color:var(--ink-soft); font-size:13px;
+  }
+  footer .flourish{color:var(--ginkgo); font-size:20px; margin-bottom:10px;}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <symbol id="maple-leaf" viewBox="0 0 100 100">
+      <path fill="currentColor" d="M50 4c3 12 10 20 20 24-6 6-8 13-6 21 8-3 16-2 22 4-8 6-12 13-11 22 9-1 17 2 22 9-10 4-16 11-17 20-9-4-18-4-26 1 1-9-3-17-11-22-9 4-18 3-25-3 6-7 8-15 5-23-9 2-17-1-23-8 9-3 15-10 16-19-9 1-17-3-22-10 10-2 17-9 19-18-9-1-16-7-19-16 10 1 19-3 24-11-3-9-1-18 5-25 6 7 15 10 24 8-1-9 3-17 10-23z"/>
+    </symbol>
+    <symbol id="ginkgo-leaf" viewBox="0 0 100 100">
+      <path fill="currentColor" d="M50 10c18 6 32 22 34 42 1 10-4 19-12 24-6 4-14 4-20 0-2 8-2 16 2 24-8-2-14-8-16-16-2 8-8 14-16 16 4-8 4-16 2-24-6 4-14 4-20 0-8-5-13-14-12-24 2-20 16-36 34-42-1 4-1 8 0 12 1-4 1-8 0-12 3-1 6-1 9 0-1 4-1 8 0 12 1-4 1-8 0-12 3-1 6-1 9 0z"/>
+    </symbol>
+  </defs>
+</svg>
+
+<nav id="topnav">
+  <a href="#info">重要資訊</a>
+  <a href="#overview">行程簡介</a>
+  <a href="#day1">10/9(五)</a>
+  <a href="#day2">10/10(六)</a>
+  <a href="#day3">10/11(日)</a>
+  <a href="#day4">10/12(一)</a>
+  <a href="#day5">10/13(二)</a>
+  <a href="#budget">旅費總覽</a>
+  <a href="#packing">提醒事項</a>
+</nav>
+
+<header class="hero">
+  <svg class="deco-leaf" style="width:70px; top:30px; left:6%; color:var(--maple); transform:rotate(-18deg);"><use href="#maple-leaf"/></svg>
+  <svg class="deco-leaf" style="width:50px; top:110px; right:9%; color:var(--ginkgo); transform:rotate(24deg);"><use href="#ginkgo-leaf"/></svg>
+  <svg class="deco-leaf" style="width:34px; bottom:20px; left:14%; color:var(--ginkgo-light); transform:rotate(-8deg);"><use href="#ginkgo-leaf"/></svg>
+  <svg class="deco-leaf" style="width:40px; bottom:40px; right:16%; color:var(--maple-deep); transform:rotate(10deg);"><use href="#maple-leaf"/></svg>
+
+  <span class="eyebrow">SISTERS' AUTUMN JOURNEY · KOREA</span>
+  <h1>楓紅落於<span class="r">大田</span>，<br>金杏灑於<span class="g">世宗</span></h1>
+  <p class="sub">兩姊妹的五天四夜韓國中部漫遊。清州進出，大田為家，順道赴一場婚禮，也順道追一場秋天。</p>
+  <div class="dates">
+    <span>10.09</span><span class="dot"></span><span>10.14</span>
+  </div>
+</header>
+
+<section id="info">
+  <div class="section-head">
+    <span class="kicker">Essentials</span>
+    <h2>重要資訊</h2>
+  </div>
+  <div class="info-grid">
+    <div class="info-card">
+      <h3>🛫 去程航班</h3>
+      <p>易斯達航空 ZE782（波音737-800 / 經濟艙K）</p>
+      <div class="flight-route">桃園 T1 <span class="arrow">✈</span> 清州</div>
+      <p class="big">02:40 → 06:05</p>
+      <p>10/9（五）｜10/8（四）晚間需提前抵達機場</p>
+    </div>
+    <div class="info-card">
+      <h3>🛬 回程航班</h3>
+      <p>台灣虎航／易斯達航空 ZE781（波音737-800 / 經濟艙E）</p>
+      <div class="flight-route">清州 <span class="arrow">✈</span> 桃園 T1</div>
+      <p class="big">23:40 → 01:10（+1天）</p>
+      <p>10/13（二）出發，10/14（三）抵達</p>
+    </div>
+    <div class="info-card">
+      <h3>🎒 行李規定</h3>
+      <p>去程：託運每人 15 公斤（長寬高總和 ≤203cm）</p>
+      <p style="color:var(--maple)">回程：⚠️ 無免費託運行李，請留意購買或精簡行李</p>
+      <p>手提行李依航空公司規定</p>
+    </div>
+    <div class="info-card">
+      <h3>🏨 大田住宿</h3>
+      <p>10/9 入住起，作為主要落腳城市</p>
+      <p class="big">確認中</p>
+      <span class="badge pending">預計本週六日訂房確認</span>
+    </div>
+  </div>
+</section>
+
+<section id="overview">
+  <div class="section-head">
+    <span class="kicker">Itinerary at a glance</span>
+    <h2>行程簡介</h2>
+  </div>
+  <div class="overview-list">
+    <a class="overview-item" href="#day1">
+      <span class="d-num accent-num">01</span>
+      <span class="d-body"><strong>10/9（五）清州抵達・汗蒸幕・移動大田</strong><span>汗蒸幕補眠・參雞湯與糖餅・大田入住</span></span>
+    </a>
+    <a class="overview-item" href="#day2">
+      <span class="d-num accent-num">02</span>
+      <span class="d-body"><strong>10/10（六）婚禮＆蘇堤洞午後漫步</strong><span>儒城婚禮・溫泉公園・咖啡街・聖心堂</span></span>
+    </a>
+    <a class="overview-item" href="#day3">
+      <span class="d-num accent-num">03</span>
+      <span class="d-body"><strong>10/11（日）世宗一日遊＆韓文節慶典</strong><span>屋頂庭園・世宗樹木園・湖水公園夜景</span></span>
+    </a>
+    <a class="overview-item" href="#day4">
+      <span class="d-num accent-num">04</span>
+      <span class="d-body"><strong>10/12（一）大田保養行程・長泰山森林</strong><span>個人行程・水杉林與高空吊橋</span></span>
+    </a>
+    <a class="overview-item" href="#day5">
+      <span class="d-num accent-num">05</span>
+      <span class="d-body"><strong>10/13（二）彈性緩衝日・返程</strong><span>美食・伴手禮・清州漫遊・搭機返台</span></span>
+    </a>
+  </div>
+</section>
+
+<!-- DAY 1 -->
+<section id="day1">
+  <div class="day-tag">✈️ 抵達日</div>
+  <h2 class="day-title serif">10/9（五）清州第一天</h2>
+  <p class="day-desc">凌晨抵達清州 → 汗蒸幕給自己洗澡補眠 → 吃參雞湯／糖餅 → 前往大田</p>
+
+  <div class="timeline">
+    <div class="t-item">
+      <div class="t-time">06:05</div>
+      <div class="t-title">✈️ 班機抵達清州國際機場</div>
+    </div>
+    <div class="t-item">
+      <div class="t-time">07:00 – 10:30</div>
+      <div class="t-title">♨️ 太化沐浴湯 汗蒸幕</div>
+      <div class="t-desc">洗澡＋搓澡＋補眠，長途飛行後先把疲憊留在這裡。</div>
+    </div>
+    <div class="t-item">
+      <div class="t-time">午後</div>
+      <div class="t-title">🍗 참옻닭 참옻닭本店 參雞湯 ・ 啾啾糖餅（쫄쫄호떡）</div>
+      <div class="t-desc">順道到中央公園、朝聖公園內樹齡900多年的「鴨腳樹」千年銀杏樹。</div>
+    </div>
+    <div class="t-item">
+      <div class="t-time">傍晚</div>
+      <div class="t-title">🏠 前往大田 Check in</div>
+      <div class="t-note">住宿確認中，訂房後補上地址與交通方式。</div>
+    </div>
+    <div class="t-item">
+      <div class="t-time">晚餐</div>
+      <div class="t-title">🍜 옛式刀削麵으씨칼국수</div>
+      <div class="t-desc">蛤蜊湯刀削麵（조개탕）₩38,000／蛤蜊湯麵＋麵線（면사리）₩2,000</div>
+      <div class="t-tips">週一固定公休｜週二至週五 11:00–21:00（15:00–15:30 休息）｜週六至週日 11:00–21:00<br>地址：大田東區新灘津路13</div>
+    </div>
+  </div>
+
+  <div class="meal-strip">
+    <div><span class="meal-label">早餐</span><span class="meal-val">清州機場／機上自理</span></div>
+    <div><span class="meal-label">午餐</span><span class="meal-val">참옻닭 參雞湯・啾啾糖餅</span></div>
+    <div><span class="meal-label">晚餐</span><span class="meal-val">옛式刀削麵으씨칼국수</span></div>
+  </div>
+
+  <div class="day-nav"><span></span><a href="#day2">下一天 →</a></div>
+</section>
+
+<!-- DAY 2 -->
+<section id="day2">
+  <div class="day-tag">💍 婚禮日</div>
+  <h2 class="day-title serif">10/10（六）婚禮＆蘇堤洞午後漫步</h2>
+  <p class="day-desc">大田儒城區的一場婚禮，午後沿著溫泉與咖啡香慢慢走。</p>
+
+  <div class="timeline">
+    <div class="t-item">
+      <div class="t-time">11:30</div>
+      <div class="t-title">💍 參加 Kindy 婚禮（大田・儒城區）</div>
+      <div class="t-desc">地點在老隱站周邊，大田廣域市儒城區恩龜路82。</div>
+      <div class="t-tips">地鐵利用：老隱站下車，步行約7–10分鐘</div>
+    </div>
+    <div class="t-item">
+      <div class="t-time">13:45 – 15:00</div>
+      <div class="t-title">♨️ 儒城溫泉公園</div>
+      <div class="t-desc">從婚禮會場搭地鐵或計程車（約5–10分鐘）直達，享受天然溫泉泡腳，只需隨身帶條小毛巾擦拭。</div>
+    </div>
+    <div class="t-item">
+      <div class="t-time">下午</div>
+      <div class="t-title">☕ 蘇堤洞咖啡街 → 大田中央市場 → 銀杏洞文化街</div>
+      <div class="t-desc">一路散步逛過去，順道感受大田的生活氣息。</div>
+    </div>
+    <div class="t-item">
+      <div class="t-time">傍晚</div>
+      <div class="t-title">🥐 聖心堂本店（성심당）</div>
+      <div class="t-desc">大田最無敵的萬年 No.1 麵包店，必買經典招牌：</div>
+      <div class="t-desc">・炸菠蘿麵包（튀김소보로）— 外皮酥脆香濃，包著綿密不甜膩的紅豆餡</div>
+      <div class="t-desc">・韭菜麵包（부추빵）— 軟嫩麵包皮包著新鮮韭菜、雞蛋與絞肉</div>
+      <div class="t-desc">・明太子法國麵包（명란바게트）— 鹹香夠味，適合配啤酒當宵夜</div>
+      <div class="t-desc">・草莓／水果蛋糕與各式糕點（케익뛰끄）— 用料實在、高CP值</div>
+    </div>
+  </div>
+
+  <div class="meal-strip">
+    <div><span class="meal-label">早餐</span><span class="meal-val">大田自理</span></div>
+    <div><span class="meal-label">午餐</span><span class="meal-val">婚禮喜宴</span></div>
+    <div><span class="meal-label">晚餐</span><span class="meal-val">蘇堤洞／銀杏洞周邊自由選擇</span></div>
+  </div>
+
+  <div class="day-nav"><a href="#day1">← 上一天</a><a href="#day3">下一天 →</a></div>
+</section>
+
+<!-- DAY 3 -->
+<section id="day3">
+  <div class="day-tag">🚌 世宗一日遊</div>
+  <h2 class="day-title serif">10/11（日）世宗豐富一日遊＆韓文節慶典</h2>
+  <p class="day-desc">大田屯山洞搭 BRT 前往世宗市，一路從屋頂庭園走到湖畔夜景與韓文節慶典。</p>
+
+  <div class="timeline">
+    <div class="t-item">
+      <div class="t-time">08:30 – 11:30</div>
+      <div class="t-title">🚌 BRT 前往世宗市 → 政府廳舍屋頂庭園</div>
+      <div class="t-desc">大田屯山洞搭乘 BRT B1 號急行公車（最便利、不需換乘），前往金氏世界紀錄「World's Largest Rooftop Garden」空中綠色步道，俯瞰世宗市區景觀。</div>
+      <div class="t-tips">路線：BRT B1（往吾松站方向）｜下車站：政府世宗廳舍北側｜預計10點入場<br>順道可到地方自治會館16樓觀景台（政府大樓6棟斜對角，步行5分鐘）</div>
+      <div class="t-note">現場登記3大必備：①護照正本（外國人必備，不接受照片或電子檔）②填寫安全同意書與基本資料（姓名／護照號碼／聯絡電話）③通過安檢（打火機、小刀、易燃物、純水以外飲食禁止攜入）</div>
+    </div>
+    <div class="t-item">
+      <div class="t-time">11:30 – 13:00</div>
+      <div class="t-title">🍚 1972 松隱井洞 보리밥（Song Eun Jeongbo Ribap）</div>
+      <div class="t-desc">享用傳統韓式大醬定食，人氣傳統韓式大醬飯定食名店，以豐富小菜與古風質感聞名。</div>
+    </div>
+    <div class="t-item">
+      <div class="t-time">15:30 – 17:00</div>
+      <div class="t-title">🌿 國立世宗樹木園</div>
+      <div class="t-desc">參觀未來感四季溫室，以及紅色「波波草」花園。</div>
+    </div>
+    <div class="t-item">
+      <div class="t-time">17:15 – 18:30</div>
+      <div class="t-title">🌅 世宗湖水公園</div>
+      <div class="t-desc">漫步全韓最大人工湖，拍夢幻的「粉黛亂子草」粉紅芒草與夕陽湖景。</div>
+      <div class="t-note">🎉 恰逢「2026 世宗韓文節慶典」：湖水公園周邊有傳統體驗攤位、文化表演、文創市集、夜間燈光造景，甚至可能有音樂會或煙火秀。</div>
+    </div>
+    <div class="t-item">
+      <div class="t-time">18:45 – 19:30</div>
+      <div class="t-title">🌉 Ieung Bridge（Geumgang Pedestrian Bridge）</div>
+      <div class="t-desc">欣賞圓形步道橋點燈夜景，之後搭公車返回大田。</div>
+    </div>
+  </div>
+
+  <div class="meal-strip">
+    <div><span class="meal-label">早餐</span><span class="meal-val">大田自理</span></div>
+    <div><span class="meal-label">午餐</span><span class="meal-val">1972 松隱井洞 大醬定食</span></div>
+    <div><span class="meal-label">晚餐</span><span class="meal-val">世宗韓文節慶典市集／返程後自理</span></div>
+  </div>
+
+  <div class="day-nav"><a href="#day2">← 上一天</a><a href="#day4">下一天 →</a></div>
+</section>
+
+<!-- DAY 4 -->
+<section id="day4">
+  <div class="day-tag">🌲 個人行程日</div>
+  <h2 class="day-title serif">10/12（一）大田個人行程・長泰山森林之旅</h2>
+  <p class="day-desc">上午留給自己的行程，下午到長泰山自然休養林散步透氣。</p>
+
+  <div class="timeline">
+    <div class="t-item">
+      <div class="t-time">上午 11:00</div>
+      <div class="t-title">📍 大田西區個人行程</div>
+      <div class="t-desc">大田西區大德大路216號4樓（Galleria百貨對面，UNIQLO大樓4樓），需攜帶護照。</div>
+    </div>
+    <div class="t-item">
+      <div class="t-time">中午</div>
+      <div class="t-title">🍽️ 午餐</div>
+    </div>
+    <div class="t-item">
+      <div class="t-time">下午</div>
+      <div class="t-title">🌲 長泰山自然休養林（장태산자연휴양림）</div>
+      <div class="t-desc">搭乘20號公車前往，漫步水杉林步道與高空吊橋，秋日走在其中格外舒服。</div>
+    </div>
+  </div>
+
+  <div class="meal-strip">
+    <div><span class="meal-label">早餐</span><span class="meal-val">大田自理</span></div>
+    <div><span class="meal-label">午餐</span><span class="meal-val">大田市區自由選擇</span></div>
+    <div><span class="meal-label">晚餐</span><span class="meal-val">大田市區自由選擇</span></div>
+  </div>
+
+  <div class="day-nav"><a href="#day3">← 上一天</a><a href="#day5">下一天 →</a></div>
+</section>
+
+<!-- DAY 5 -->
+<section id="day5">
+  <div class="day-tag">✈️ 賦歸日</div>
+  <h2 class="day-title serif">10/13（二）彈性緩衝日・返程</h2>
+  <p class="day-desc">最後一天走彈性路線：美食、伴手禮、景點一次收尾，順路前往機場。</p>
+
+  <div class="timeline">
+    <div class="t-item">
+      <div class="t-time">上午</div>
+      <div class="t-title">🥐 大田最後採買／早餐</div>
+      <div class="t-desc">視大田住宿位置彈性安排，補買前幾天沒買夠的伴手禮，或再吃一次喜歡的店。</div>
+    </div>
+    <div class="t-item">
+      <div class="t-time">中午前後</div>
+      <div class="t-title">🚄 移動前往清州</div>
+      <div class="t-desc">車程約50分鐘至1小時。</div>
+    </div>
+    <div class="t-item">
+      <div class="t-time">下午</div>
+      <div class="t-title">🛍️ 清州聖安街（성안길）＆ 六街市場（육거리시장）</div>
+      <div class="t-desc">清州最大的商店街兼美食街，全長約600公尺，吃、喝、買一次滿足；旁邊的六街市場是清州最老的傳統市場，適合掃最後一波伴手禮零食。</div>
+      <div class="t-note">同一區域就能兼顧吃、買、逛，不用因為分頭跑好幾個地方而趕時間，機場也在附近，晚一點出發也不怕塞車誤機。</div>
+    </div>
+    <div class="t-item">
+      <div class="t-time">傍晚</div>
+      <div class="t-title">🕗 視時間彈性移動往機場</div>
+      <div class="t-desc">當作整趟旅程的緩衝時段，不特別排滿。</div>
+    </div>
+    <div class="t-item">
+      <div class="t-time">20:30 前</div>
+      <div class="t-title">🛫 抵達清州國際機場</div>
+      <div class="t-desc">準備搭乘 23:40 班機 ZE781 返台，01:10（+1天）抵達桃園 T1。</div>
+    </div>
+  </div>
+
+  <div class="meal-strip">
+    <div><span class="meal-label">早餐</span><span class="meal-val">大田周邊自理</span></div>
+    <div><span class="meal-label">午餐</span><span class="meal-val">清州聖安街周邊</span></div>
+    <div><span class="meal-label">晚餐</span><span class="meal-val">機場內自理（回程無供餐）</span></div>
+  </div>
+
+  <div class="day-nav"><a href="#day4">← 上一天</a><span></span></div>
+</section>
+
+<section id="budget">
+  <div class="section-head">
+    <span class="kicker">Trip budget</span>
+    <h2>旅費總覽</h2>
+  </div>
+  <div class="budget-list">
+    <div class="budget-row">
+      <span class="budget-label"><span class="ico">🛫</span>機票</span>
+      <span class="budget-amount">TWD 9,386</span>
+    </div>
+    <div class="budget-row">
+      <span class="budget-label"><span class="ico">🏨</span>住宿</span>
+      <span class="budget-amount pending">確認中</span>
+    </div>
+    <div class="budget-row">
+      <span class="budget-label"><span class="ico">💆</span>個人保養</span>
+      <span class="budget-amount">TWD 1,608<span class="sub-cur">約₩70,000</span></span>
+    </div>
+    <div class="budget-row">
+      <span class="budget-label"><span class="ico">🚌</span>交通</span>
+      <span class="budget-amount pending">待補</span>
+    </div>
+    <div class="budget-row">
+      <span class="budget-label"><span class="ico">💴</span>現金預備</span>
+      <span class="budget-amount pending">待補</span>
+    </div>
+    <div class="budget-row">
+      <span class="budget-label"><span class="ico">💍</span>禮金</span>
+      <span class="budget-amount">₩150,000<span class="sub-cur">– ₩200,000</span></span>
+    </div>
+    <div class="budget-note">住宿／交通／現金金額確認後會再更新這裡，個人保養費用已先與診所確認初診價格。</div>
+  </div>
+</section>
+
+<section id="packing">
+  <div class="section-head">
+    <span class="kicker">Don't forget</span>
+    <h2>提醒事項</h2>
+  </div>
+  <div class="pack-alert">
+    <span class="icon">👗</span>
+    <div>
+      <strong>10/10 婚禮服裝</strong>
+      <p>別忘了帶參加 Kindy 婚禮要穿的服裝與相關配件，出發前先確認好放在隨身或托運行李中，避免臨時找不到。</p>
+    </div>
+  </div>
+  <div class="pack-alert" style="border-color:var(--ginkgo); margin-top:16px;">
+    <span class="icon">🧳</span>
+    <div>
+      <strong>回程無免費託運行李</strong>
+      <p>回程 ZE781 航班無免費託運行李額度，最後一天在清州採買伴手禮時，記得留意行李重量與空間，或事先加購托運額度。</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="flourish">✦</div>
+  五天四夜，落葉與喜帖都恰好在旅程裡相遇。
+</footer>
+
+</body>
+</html>
