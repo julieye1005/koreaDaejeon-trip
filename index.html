@@ -270,6 +270,134 @@
     border-top:1px solid var(--line);
   }
 
+  /* ---------- outfit ---------- */
+  .outfit-grid{display:flex; flex-direction:column; gap:16px;}
+  .outfit-card{
+    display:grid; grid-template-columns:110px 1fr;
+    gap:22px; align-items:start;
+    background:var(--card); border:1px solid var(--line);
+    padding:22px 24px;
+  }
+  @media(max-width:640px){.outfit-card{grid-template-columns:1fr;}}
+  .outfit-day{
+    font-family:"Cormorant Garamond",serif;
+    color:var(--maple); border-right:1px solid var(--line);
+    padding-right:18px;
+  }
+  @media(max-width:640px){.outfit-day{border-right:none; border-bottom:1px solid var(--line); padding-right:0; padding-bottom:10px;}}
+  .outfit-day .num{font-size:30px; display:block; line-height:1;}
+  .outfit-day .wk{font-size:13px; color:var(--ink-soft); font-family:"Noto Sans TC",sans-serif;}
+  .outfit-day .temp{font-size:12.5px; color:var(--ginkgo); margin-top:8px; font-family:"Noto Sans TC",sans-serif;}
+  .outfit-body h4{margin:0 0 8px; font-size:15.5px; color:var(--ink);}
+  .outfit-body p{margin:0; font-size:14px; color:var(--ink-soft);}
+  .outfit-body .shoe{
+    display:inline-block; margin-top:10px; font-size:12.5px;
+    color:var(--pine); background:var(--paper-deep); padding:4px 10px;
+  }
+
+  /* ---------- checklist ---------- */
+  .checklist{
+    background:var(--card); border:1px solid var(--line);
+  }
+  .check-item{
+    display:flex; align-items:flex-start; gap:16px;
+    padding:18px 24px;
+    border-bottom:1px solid var(--line);
+    cursor:pointer;
+    user-select:none;
+    transition:background .2s;
+  }
+  .check-item:last-child{border-bottom:none;}
+  .check-item:hover{background:var(--paper-deep);}
+  .check-box{
+    flex:0 0 auto;
+    width:24px; height:24px;
+    border:2px solid var(--maple);
+    display:flex; align-items:center; justify-content:center;
+    margin-top:2px;
+    background:var(--paper);
+    transition:background .2s, border-color .2s;
+  }
+  .check-box svg{
+    width:14px; height:14px; opacity:0; transform:scale(0.5);
+    transition:opacity .15s, transform .15s;
+  }
+  .check-item.done .check-box{background:var(--maple); border-color:var(--maple);}
+  .check-item.done .check-box svg{opacity:1; transform:scale(1);}
+  .check-body strong{
+    display:block; font-size:15.5px; color:var(--ink);
+    transition:color .2s;
+  }
+  .check-item.done .check-body strong{color:var(--ink-soft); text-decoration:line-through;}
+  .check-body span{font-size:13px; color:var(--maple); font-family:"Noto Sans TC",sans-serif;}
+  .check-item.done .check-body span{color:var(--ink-soft);}
+  .checklist-note{padding:14px 24px; font-size:12.5px; color:var(--ink-soft); background:var(--paper-deep);}
+
+  /* ---------- ootd planner ---------- */
+  .ootd-tabs{
+    display:flex; gap:8px; flex-wrap:wrap; margin-bottom:24px;
+  }
+  .ootd-tab{
+    font-family:"Noto Serif TC",serif;
+    font-size:14px; padding:9px 18px;
+    background:var(--card); border:1px solid var(--line);
+    color:var(--ink-soft); cursor:pointer;
+    transition:all .2s;
+  }
+  .ootd-tab.active{background:var(--maple); color:#FBF7EC; border-color:var(--maple);}
+  .ootd-panel{display:none;}
+  .ootd-panel.active{display:block;}
+  .ootd-row{
+    display:grid; grid-template-columns:100px 1fr;
+    gap:16px; align-items:flex-start;
+    padding:16px 0; border-bottom:1px solid var(--line);
+  }
+  @media(max-width:560px){.ootd-row{grid-template-columns:1fr;}}
+  .ootd-label{font-size:14.5px; color:var(--ink); padding-top:8px;}
+  .ootd-input{
+    width:100%; box-sizing:border-box;
+    padding:8px 12px; font-size:14px;
+    border:1px solid var(--line); background:var(--paper);
+    font-family:"Noto Sans TC",sans-serif; color:var(--ink);
+    margin-bottom:10px;
+  }
+  .ootd-input:focus{outline:none; border-color:var(--maple);}
+  .ootd-chips{display:flex; flex-wrap:wrap; gap:8px;}
+  .ootd-chip{
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--paper-deep); border:1px solid var(--line);
+    padding:5px 8px 5px 12px; font-size:13px; color:var(--ink);
+  }
+  .ootd-chip button{
+    border:none; background:none; color:var(--maple);
+    cursor:pointer; font-size:15px; line-height:1; padding:0 2px;
+  }
+  .ootd-summary{
+    margin-top:36px; background:var(--card); border:1px solid var(--maple);
+    padding:24px 26px;
+  }
+  .ootd-summary h3{margin:0 0 14px; font-size:16px; font-family:"Noto Serif TC",serif;}
+  .ootd-sum-row{
+    display:flex; justify-content:space-between; align-items:baseline;
+    padding:8px 0; border-bottom:1px dashed var(--line); font-size:14px;
+  }
+  .ootd-sum-row:last-of-type{border-bottom:none;}
+  .ootd-sum-row .cnt{font-family:"Cormorant Garamond",serif; font-size:19px; color:var(--maple);}
+  .ootd-sum-total{
+    margin-top:14px; padding-top:14px; border-top:1px solid var(--line);
+    display:flex; justify-content:space-between; align-items:baseline;
+  }
+  .ootd-sum-total .cnt{font-size:30px; color:var(--maple); font-family:"Cormorant Garamond",serif;}
+  .ootd-empty{color:var(--ink-soft); font-size:13px;}
+
+  .map-link{
+    display:inline-flex; align-items:center; gap:4px;
+    color:var(--maple); text-decoration:none; font-size:13px;
+    border-bottom:1px dashed var(--maple);
+    margin-top:6px;
+  }
+  .map-link:hover{color:var(--maple-deep); border-color:var(--maple-deep);}
+
   footer{
     text-align:center; padding:50px 24px 70px; color:var(--ink-soft); font-size:13px;
   }
@@ -298,6 +426,9 @@
   <a href="#day4">10/12(一)</a>
   <a href="#day5">10/13(二)</a>
   <a href="#budget">旅費總覽</a>
+  <a href="#outfit">每日穿搭</a>
+  <a href="#ootd">OOTD規劃</a>
+  <a href="#prep">行前準備</a>
   <a href="#packing">提醒事項</a>
 </nav>
 
@@ -343,9 +474,10 @@
     </div>
     <div class="info-card">
       <h3>🏨 大田住宿</h3>
-      <p>10/9 入住起，作為主要落腳城市</p>
-      <p class="big">確認中</p>
-      <span class="badge pending">預計本週六日訂房確認</span>
+      <p>38 Dunsan-ro 73beon-gil, 大田（Daejeon）35233，南韓</p>
+      <p class="big">TWD 3,704.29<span class="sub-cur" style="font-size:12px;">／人</span></p>
+      <p>總額 TWD 7,408.57，兩人平分</p>
+      <a class="map-link" href="https://map.naver.com/p/search/38%20Dunsan-ro%2073beon-gil%2C%20Daejeon" target="_blank" rel="noopener">📍 在 Naver Map 開啟</a>
     </div>
   </div>
 </section>
@@ -370,7 +502,7 @@
     </a>
     <a class="overview-item" href="#day4">
       <span class="d-num accent-num">04</span>
-      <span class="d-body"><strong>10/12（一）大田保養行程・長泰山森林</strong><span>個人行程・水杉林與高空吊橋</span></span>
+      <span class="d-body"><strong>10/12（一）醫美變漂亮行程・長泰山森林</strong><span>變漂亮行程・水杉林與高空吊橋</span></span>
     </a>
     <a class="overview-item" href="#day5">
       <span class="d-num accent-num">05</span>
@@ -394,29 +526,32 @@
       <div class="t-time">07:00 – 10:30</div>
       <div class="t-title">♨️ 太化沐浴湯 汗蒸幕</div>
       <div class="t-desc">洗澡＋搓澡＋補眠，長途飛行後先把疲憊留在這裡。</div>
+      <a class="map-link" href="https://map.naver.com/p/search/%EC%B2%AD%EC%A3%BC%20%ED%83%9C%ED%99%94%ED%83%95" target="_blank" rel="noopener">📍 在 Naver Map 開啟</a>
     </div>
     <div class="t-item">
       <div class="t-time">午後</div>
-      <div class="t-title">🍗 장수촌참옻닭本店 參雞湯 ・ 啾啾糖餅（쫄쫄호떡）</div>
+      <div class="t-title">🍗 참옻닭 참옻닭本店 參雞湯 ・ 啾啾糖餅（쫄쫄호떡）</div>
       <div class="t-desc">順道到中央公園、朝聖公園內樹齡900多年的「鴨腳樹」千年銀杏樹。</div>
     </div>
     <div class="t-item">
       <div class="t-time">傍晚</div>
       <div class="t-title">🏠 前往大田 Check in</div>
-      <div class="t-note">住宿確認中，訂房後補上地址與交通方式。</div>
+      <div class="t-desc">38 Dunsan-ro 73beon-gil, 大田 35233，南韓</div>
+      <a class="map-link" href="https://map.naver.com/p/search/38%20Dunsan-ro%2073beon-gil%2C%20Daejeon" target="_blank" rel="noopener">📍 在 Naver Map 開啟</a>
     </div>
     <div class="t-item">
       <div class="t-time">晚餐</div>
-      <div class="t-title">🍜 吳式刀削麵으씨칼국수</div>
+      <div class="t-title">🍜 吳氏刀削麵오씨칼국수</div>
       <div class="t-desc">蛤蜊湯刀削麵（조개탕）₩38,000／蛤蜊湯麵＋麵線（면사리）₩2,000</div>
       <div class="t-tips">週一固定公休｜週二至週五 11:00–21:00（15:00–15:30 休息）｜週六至週日 11:00–21:00<br>地址：大田東區新灘津路13</div>
+      <a class="map-link" href="https://map.naver.com/p/search/%EB%8C%80%EC%A0%84%20%EB%8F%99%EA%B5%AC%20%EC%8B%A0%ED%83%84%EC%A7%84%EB%A1%9C13" target="_blank" rel="noopener">📍 在 Naver Map 開啟</a>
     </div>
   </div>
 
   <div class="meal-strip">
     <div><span class="meal-label">早餐</span><span class="meal-val">清州機場／機上自理</span></div>
-    <div><span class="meal-label">午餐</span><span class="meal-val">장수촌참옻닭 參雞湯・啾啾糖餅</span></div>
-    <div><span class="meal-label">晚餐</span><span class="meal-val">吳式刀削麵으씨칼국수</span></div>
+    <div><span class="meal-label">午餐</span><span class="meal-val">참옻닭 參雞湯・啾啾糖餅</span></div>
+    <div><span class="meal-label">晚餐</span><span class="meal-val">吳氏刀削麵오씨칼국수</span></div>
   </div>
 
   <div class="day-nav"><span></span><a href="#day2">下一天 →</a></div>
@@ -434,16 +569,19 @@
       <div class="t-title">💍 參加 Kindy 婚禮（大田・儒城區）</div>
       <div class="t-desc">地點在老隱站周邊，大田廣域市儒城區恩龜路82。</div>
       <div class="t-tips">地鐵利用：老隱站下車，步行約7–10分鐘</div>
+      <a class="map-link" href="https://map.naver.com/p/search/%EB%8C%80%EC%A0%84%EA%B4%91%EC%97%AD%EC%8B%9C%20%EC%9C%A0%EC%84%B1%EA%B5%AC%20%EC%9D%80%EA%B5%AC%EB%B9%84%EB%A1%9C%2082" target="_blank" rel="noopener">📍 在 Naver Map 開啟</a>
     </div>
     <div class="t-item">
       <div class="t-time">13:45 – 15:00</div>
       <div class="t-title">♨️ 儒城溫泉公園</div>
       <div class="t-desc">從婚禮會場搭地鐵或計程車（約5–10分鐘）直達，享受天然溫泉泡腳，只需隨身帶條小毛巾擦拭。</div>
+      <a class="map-link" href="https://map.naver.com/p/search/%EC%9C%A0%EC%84%B1%EC%98%A8%EC%B2%9C%EA%B3%B5%EC%9B%90" target="_blank" rel="noopener">📍 在 Naver Map 開啟</a>
     </div>
     <div class="t-item">
       <div class="t-time">下午</div>
       <div class="t-title">☕ 蘇堤洞咖啡街 → 大田中央市場 → 銀杏洞文化街</div>
       <div class="t-desc">一路散步逛過去，順道感受大田的生活氣息。</div>
+      <a class="map-link" href="https://map.naver.com/p/search/%EC%86%8C%EC%A0%9C%EB%8F%99%20%EC%B9%B4%ED%8E%98%EA%B1%B0%EB%A6%AC" target="_blank" rel="noopener">📍 蘇堤洞咖啡街 Naver Map</a>
     </div>
     <div class="t-item">
       <div class="t-time">傍晚</div>
@@ -453,6 +591,7 @@
       <div class="t-desc">・韭菜麵包（부추빵）— 軟嫩麵包皮包著新鮮韭菜、雞蛋與絞肉</div>
       <div class="t-desc">・明太子法國麵包（명란바게트）— 鹹香夠味，適合配啤酒當宵夜</div>
       <div class="t-desc">・草莓／水果蛋糕與各式糕點（케익뛰끄）— 用料實在、高CP值</div>
+      <a class="map-link" href="https://map.naver.com/p/search/%EC%84%B1%EC%8B%AC%EB%8B%B9%20%EB%B3%B8%EC%A0%90" target="_blank" rel="noopener">📍 聖心堂本店 Naver Map</a>
     </div>
   </div>
 
@@ -478,33 +617,39 @@
       <div class="t-desc">大田屯山洞搭乘 BRT B1 號急行公車（最便利、不需換乘），前往金氏世界紀錄「World's Largest Rooftop Garden」空中綠色步道，俯瞰世宗市區景觀。</div>
       <div class="t-tips">路線：BRT B1（往吾松站方向）｜下車站：政府世宗廳舍北側｜預計10點入場<br>順道可到地方自治會館16樓觀景台（政府大樓6棟斜對角，步行5分鐘）</div>
       <div class="t-note">現場登記3大必備：①護照正本（外國人必備，不接受照片或電子檔）②填寫安全同意書與基本資料（姓名／護照號碼／聯絡電話）③通過安檢（打火機、小刀、易燃物、純水以外飲食禁止攜入）</div>
+      <a class="map-link" href="https://map.naver.com/p/search/%EC%84%B8%EC%A2%85%EC%A0%95%EB%B6%80%EC%B2%AD%EC%82%AC" target="_blank" rel="noopener">📍 世宗政府廳舍 Naver Map</a>
     </div>
     <div class="t-item">
       <div class="t-time">11:30 – 13:00</div>
-      <div class="t-title">🍚 1972 松隱井洞 보리밥（Song Eun Jeongbo Ribap）</div>
+      <div class="t-title">🍚 1972 宋恩貞麥飯石鍋拌飯總店（송은정 보리밥 Song Eun Jeongbo Ribap）</div>
       <div class="t-desc">享用傳統韓式大醬定食，人氣傳統韓式大醬飯定食名店，以豐富小菜與古風質感聞名。</div>
+      <div class="t-tips">地址：世宗特別自治市鳥致院읍世宗路 2427 1樓（세종특별자치시 조치원읍 세종로 2427 1층）｜營業時間：每日 08:30–20:30</div>
+      <a class="map-link" href="https://map.naver.com/p/search/%EC%84%B8%EC%A2%85%ED%8A%B9%EB%B3%84%EC%9E%90%EC%B9%98%EC%8B%9C%20%EC%A1%B0%EC%B9%98%EC%9B%90%EC%9D%8D%20%EC%84%B8%EC%A2%85%EB%A1%9C%202427" target="_blank" rel="noopener">📍 在 Naver Map 開啟</a>
     </div>
     <div class="t-item">
       <div class="t-time">15:30 – 17:00</div>
       <div class="t-title">🌿 國立世宗樹木園</div>
       <div class="t-desc">參觀未來感四季溫室，以及紅色「波波草」花園。</div>
+      <a class="map-link" href="https://map.naver.com/p/search/%EA%B5%AD%EB%A6%BD%EC%84%B8%EC%A2%85%EC%88%98%EB%AA%A9%EC%9B%90" target="_blank" rel="noopener">📍 在 Naver Map 開啟</a>
     </div>
     <div class="t-item">
       <div class="t-time">17:15 – 18:30</div>
       <div class="t-title">🌅 世宗湖水公園</div>
       <div class="t-desc">漫步全韓最大人工湖，拍夢幻的「粉黛亂子草」粉紅芒草與夕陽湖景。</div>
       <div class="t-note">🎉 恰逢「2026 世宗韓文節慶典」：湖水公園周邊有傳統體驗攤位、文化表演、文創市集、夜間燈光造景，甚至可能有音樂會或煙火秀。</div>
+      <a class="map-link" href="https://map.naver.com/p/search/%EC%84%B8%EC%A2%85%ED%98%B8%EC%88%98%EA%B3%B5%EC%9B%90" target="_blank" rel="noopener">📍 世宗湖水公園 Naver Map</a>
     </div>
     <div class="t-item">
       <div class="t-time">18:45 – 19:30</div>
-      <div class="t-title">🌉 Ieung Bridge（Geumgang Pedestrian Bridge）</div>
+      <div class="t-title">🌉 李應橋 Ieung Bridge（Geumgang Pedestrian Bridge）</div>
       <div class="t-desc">欣賞圓形步道橋點燈夜景，之後搭公車返回大田。</div>
+      <a class="map-link" href="https://map.naver.com/p/search/%EC%9D%B4%EC%9D%91%EB%8B%A4%EB%A6%AC" target="_blank" rel="noopener">📍 李應橋 Naver Map</a>
     </div>
   </div>
 
   <div class="meal-strip">
     <div><span class="meal-label">早餐</span><span class="meal-val">大田自理</span></div>
-    <div><span class="meal-label">午餐</span><span class="meal-val">1972 松隱井洞 大醬定食</span></div>
+    <div><span class="meal-label">午餐</span><span class="meal-val">1972 宋恩貞麥飯石鍋拌飯總店</span></div>
     <div><span class="meal-label">晚餐</span><span class="meal-val">世宗韓文節慶典市集／返程後自理</span></div>
   </div>
 
@@ -513,15 +658,16 @@
 
 <!-- DAY 4 -->
 <section id="day4">
-  <div class="day-tag">🌲 個人行程日</div>
-  <h2 class="day-title serif">10/12（一）大田個人行程・長泰山森林之旅</h2>
-  <p class="day-desc">上午留給自己的行程，下午到長泰山自然休養林散步透氣。</p>
+  <div class="day-tag">💆 變漂亮日</div>
+  <h2 class="day-title serif">10/12（一）醫美變漂亮行程・長泰山森林之旅</h2>
+  <p class="day-desc">上午到診所變漂亮，下午到長泰山自然休養林散步透氣。</p>
 
   <div class="timeline">
     <div class="t-item">
       <div class="t-time">上午 11:00</div>
-      <div class="t-title">📍 大田西區個人行程</div>
+      <div class="t-title">💆 醫美變漂亮行程</div>
       <div class="t-desc">大田西區大德大路216號4樓（Galleria百貨對面，UNIQLO大樓4樓），需攜帶護照。</div>
+      <a class="map-link" href="https://map.naver.com/p/search/%EB%8C%80%EC%A0%84%20%EC%84%9C%EA%B5%AC%20%EB%8C%80%EB%8D%95%EB%8C%80%EB%A1%9C%20216" target="_blank" rel="noopener">📍 在 Naver Map 開啟</a>
     </div>
     <div class="t-item">
       <div class="t-time">中午</div>
@@ -531,7 +677,9 @@
       <div class="t-time">下午</div>
       <div class="t-title">🌲 長泰山自然休養林（장태산자연휴양림）</div>
       <div class="t-desc">搭乘20號公車前往，漫步水杉林步道與高空吊橋，秋日走在其中格外舒服。</div>
+      <a class="map-link" href="https://map.naver.com/p/search/%EC%9E%A5%ED%83%9C%EC%82%B0%EC%9E%90%EC%97%B0%ED%9C%B4%EC%96%91%EB%A6%BC" target="_blank" rel="noopener">📍 長泰山自然休養林 Naver Map</a>
     </div>
+
   </div>
 
   <div class="meal-strip">
@@ -564,6 +712,10 @@
       <div class="t-time">下午</div>
       <div class="t-title">🛍️ 清州聖安街（성안길）＆ 六街市場（육거리시장）</div>
       <div class="t-desc">清州最大的商店街兼美食街，全長約600公尺，吃、喝、買一次滿足；旁邊的六街市場是清州最老的傳統市場，適合掃最後一波伴手禮零食。</div>
+      <div style="display:flex; gap:16px; flex-wrap:wrap;">
+        <a class="map-link" href="https://map.naver.com/p/search/%EC%B2%AD%EC%A3%BC%20%EC%84%B1%EC%95%88%EA%B8%B8" target="_blank" rel="noopener">📍 聖安街 Naver Map</a>
+        <a class="map-link" href="https://map.naver.com/p/search/%EC%B2%AD%EC%A3%BC%20%EC%9C%A1%EA%B1%B0%EB%A6%AC%EC%8B%9C%EC%9E%A5" target="_blank" rel="noopener">📍 六街市場 Naver Map</a>
+      </div>
       <div class="t-note">同一區域就能兼顧吃、買、逛，不用因為分頭跑好幾個地方而趕時間，機場也在附近，晚一點出發也不怕塞車誤機。</div>
     </div>
     <div class="t-item">
@@ -599,7 +751,7 @@
     </div>
     <div class="budget-row">
       <span class="budget-label"><span class="ico">🏨</span>住宿</span>
-      <span class="budget-amount pending">確認中</span>
+      <span class="budget-amount">TWD 3,704.29<span class="sub-cur">／人（共7,408.57）</span></span>
     </div>
     <div class="budget-row">
       <span class="budget-label"><span class="ico">💆</span>個人保養</span>
@@ -617,8 +769,135 @@
       <span class="budget-label"><span class="ico">💍</span>禮金</span>
       <span class="budget-amount">₩150,000<span class="sub-cur">– ₩200,000</span></span>
     </div>
-    <div class="budget-note">住宿／交通／現金金額確認後會再更新這裡，個人保養費用已先與診所確認初診價格。</div>
+    <div class="budget-note">交通／現金金額確認後會再更新這裡，住宿與個人保養費用已確認。</div>
   </div>
+</section>
+
+<section id="outfit">
+  <div class="section-head">
+    <span class="kicker">What to wear</span>
+    <h2>每日穿搭</h2>
+  </div>
+  <div class="outfit-grid">
+    <div class="outfit-card">
+      <div class="outfit-day">
+        <span class="num accent-num">09</span>
+        <span class="wk">五・抵達日</span>
+        <div class="temp">☀️ 約10–19°C</div>
+      </div>
+      <div class="outfit-body">
+        <h4>易穿脫的舒適旅裝</h4>
+        <p>凌晨落地又要進汗蒸幕，建議寬鬆好穿脫的家居感穿搭，方便換裝、也不怕悶熱。外面套一件輕薄外套應付清晨低溫，長途飛行也舒服。</p>
+        <span class="shoe">👟 好走好脫的鞋款</span>
+      </div>
+    </div>
+    <div class="outfit-card">
+      <div class="outfit-day">
+        <span class="num accent-num">10</span>
+        <span class="wk">六・婚禮日</span>
+        <div class="temp">☀️ 約12–20°C</div>
+      </div>
+      <div class="outfit-body">
+        <h4>優雅洋裝＋針織外套</h4>
+        <p>白天參加婚禮，適合連身洋裝或裙裝，搭一件針織罩衫應付會場冷氣與傍晚降溫；婚禮後還要走溫泉公園、咖啡街，選擇好活動、不易皺的材質更輕鬆。</p>
+        <span class="shoe">👠 低跟鞋或好走的包鞋，可隨身帶雙平底鞋備用</span>
+      </div>
+    </div>
+    <div class="outfit-card">
+      <div class="outfit-day">
+        <span class="num accent-num">11</span>
+        <span class="wk">日・世宗一日遊</span>
+        <div class="temp">☀️ 約11–19°C</div>
+      </div>
+      <div class="outfit-body">
+        <h4>楓紅／銀杏色系走秋日感</h4>
+        <p>整天大量步行＋搭車，早上屋頂庭園需通過安檢，選簡單好搜身的穿搭；顏色可以呼應行程主題，來點磚紅、卡其、芥末黃，晚上湖畔看夜景記得加件外套保暖。</p>
+        <span class="shoe">👟 耐走的休閒鞋，全天走跳不喊累</span>
+      </div>
+    </div>
+    <div class="outfit-card">
+      <div class="outfit-day">
+        <span class="num accent-num">12</span>
+        <span class="wk">一・變漂亮日</span>
+        <div class="temp">☀️ 約9–18°C</div>
+      </div>
+      <div class="outfit-body">
+        <h4>簡單素顏友善穿搭</h4>
+        <p>上午診所行程建議淡妝或素顏、穿脫方便的上衣（避免高領），下午轉往長泰山森林散步，記得多帶一件外套，林間早晚溫差較明顯。</p>
+        <span class="shoe">👟 止滑好走的鞋，吊橋與木棧道地形需要</span>
+      </div>
+    </div>
+    <div class="outfit-card">
+      <div class="outfit-day">
+        <span class="num accent-num">13</span>
+        <span class="wk">二・返程日</span>
+        <div class="temp">☀️ 約11–19°C</div>
+      </div>
+      <div class="outfit-body">
+        <h4>寬鬆百搭的搭機裝</h4>
+        <p>白天彈性逛街採買，晚上直接搭夜間航班，建議穿寬鬆有彈性、方便久坐的衣服，外套口袋多一點方便放護照證件，行李箱空間也留給伴手禮。</p>
+        <span class="shoe">👟 舒適好走又耐久坐的鞋款</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="ootd">
+  <div class="section-head">
+    <span class="kicker">Plan &amp; pack</span>
+    <h2>OOTD 規劃 ＆ 打包統計</h2>
+  </div>
+  <p style="color:var(--ink-soft); font-size:14px; margin-top:-16px; margin-bottom:28px;">點選日期分頁，輸入當天想搭配的衣物，下方會自動統計扣除重複穿搭後、實際要帶的件數。</p>
+
+  <div class="ootd-tabs" id="ootdTabs"></div>
+  <div id="ootdPanels"></div>
+
+  <div class="ootd-summary">
+    <h3>🧳 打包統計</h3>
+    <div id="ootdSummaryBody"></div>
+  </div>
+</section>
+
+<section id="prep">
+  <div class="section-head">
+    <span class="kicker">Before you go</span>
+    <h2>行前準備</h2>
+  </div>
+  <div class="checklist" id="prepChecklist">
+    <div class="check-item" data-id="keta">
+      <span class="check-box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l6 6L20 6" stroke="#FBF7EC" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <span class="check-body"><strong>入境申請（K-ETA）</strong><span>建議出發前3天完成</span></span>
+    </div>
+    <div class="check-item" data-id="esim">
+      <span class="check-box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l6 6L20 6" stroke="#FBF7EC" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <span class="check-body"><strong>申辦網路（eSIM／WiFi機）</strong><span>出發前線上訂購，落地掃碼即用</span></span>
+    </div>
+    <div class="check-item" data-id="currency">
+      <span class="check-box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l6 6L20 6" stroke="#FBF7EC" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <span class="check-body"><strong>換韓元現金</strong><span>含禮金15萬–20萬韓元＋日常花用</span></span>
+    </div>
+    <div class="check-item" data-id="hotel">
+      <span class="check-box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l6 6L20 6" stroke="#FBF7EC" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <span class="check-body"><strong>大田住宿已訂好</strong><span>38 Dunsan-ro 73beon-gil, Daejeon</span></span>
+    </div>
+    <div class="check-item" data-id="wedding-outfit">
+      <span class="check-box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l6 6L20 6" stroke="#FBF7EC" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <span class="check-body"><strong>準備婚禮服裝</strong><span>10/10 參加 Kindy 婚禮要穿</span></span>
+    </div>
+    <div class="check-item" data-id="passport">
+      <span class="check-box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l6 6L20 6" stroke="#FBF7EC" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <span class="check-body"><strong>確認護照效期</strong><span>世宗屋頂庭園登記須出示護照正本</span></span>
+    </div>
+    <div class="check-item" data-id="checkin">
+      <span class="check-box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l6 6L20 6" stroke="#FBF7EC" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <span class="check-body"><strong>航班線上報到</strong><span>ZE782 起飛前完成報到</span></span>
+    </div>
+    <div class="check-item" data-id="app">
+      <span class="check-box"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l6 6L20 6" stroke="#FBF7EC" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <span class="check-body"><strong>下載地圖／翻譯 App</strong><span>Naver Map、Papago 先裝好</span></span>
+    </div>
+  </div>
+  <div class="checklist-note">點方框打勾／取消，狀態會存在這台裝置的瀏覽器裡。想加減項目隨時跟我說。</div>
 </section>
 
 <section id="packing">
@@ -640,12 +919,203 @@
       <p>回程 ZE781 航班無免費託運行李額度，最後一天在清州採買伴手禮時，記得留意行李重量與空間，或事先加購托運額度。</p>
     </div>
   </div>
+  <div class="pack-alert" style="border-color:var(--pine); margin-top:16px;">
+    <span class="icon">🚫</span>
+    <div>
+      <strong>購物提醒：不要再買面膜了！</strong>
+      <p>怕失手又亂買，先寫下來提醒自己：這趟不要再買面膜了。（購物清單之後會再補上）</p>
+    </div>
+  </div>
 </section>
 
 <footer>
   <div class="flourish">✦</div>
   五天四夜，落葉與喜帖都恰好在旅程裡相遇。
 </footer>
+
+<script>
+(function(){
+  var STORAGE_KEY = 'korea-trip-prep-checklist';
+  var state = {};
+  try {
+    state = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+  } catch(e) { state = {}; }
+
+  var items = document.querySelectorAll('#prepChecklist .check-item');
+  items.forEach(function(item){
+    var id = item.getAttribute('data-id');
+    if (state[id]) item.classList.add('done');
+    item.addEventListener('click', function(){
+      item.classList.toggle('done');
+      state[id] = item.classList.contains('done');
+      try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch(e) {}
+    });
+  });
+})();
+
+(function(){
+  var OOTD_KEY = 'korea-trip-ootd';
+  var DAYS = [
+    {key:'d09', label:'10/9（五）'},
+    {key:'d10', label:'10/10（六）'},
+    {key:'d11', label:'10/11（日）'},
+    {key:'d12', label:'10/12（一）'},
+    {key:'d13', label:'10/13（二）'}
+  ];
+  var CATS = [
+    {key:'top', label:'上衣', icon:'👚'},
+    {key:'bottom', label:'下身', icon:'👖'},
+    {key:'outer', label:'外套', icon:'🧥'},
+    {key:'shoes', label:'鞋子', icon:'👟'},
+    {key:'acc', label:'配件', icon:'💍'}
+  ];
+
+  var data = {};
+  try { data = JSON.parse(localStorage.getItem(OOTD_KEY) || '{}'); } catch(e) { data = {}; }
+  DAYS.forEach(function(d){
+    if (!data[d.key]) data[d.key] = {};
+    CATS.forEach(function(c){
+      if (!Array.isArray(data[d.key][c.key])) data[d.key][c.key] = [];
+    });
+  });
+
+  function save(){
+    try { localStorage.setItem(OOTD_KEY, JSON.stringify(data)); } catch(e) {}
+  }
+
+  var tabsEl = document.getElementById('ootdTabs');
+  var panelsEl = document.getElementById('ootdPanels');
+  var activeDay = DAYS[0].key;
+
+  function renderTabs(){
+    tabsEl.innerHTML = '';
+    DAYS.forEach(function(d){
+      var btn = document.createElement('div');
+      btn.className = 'ootd-tab' + (d.key === activeDay ? ' active' : '');
+      btn.textContent = d.label;
+      btn.addEventListener('click', function(){
+        activeDay = d.key;
+        renderTabs();
+        renderPanels();
+      });
+      tabsEl.appendChild(btn);
+    });
+  }
+
+  function renderChips(container, dayKey, catKey){
+    container.innerHTML = '';
+    var arr = data[dayKey][catKey];
+    if (arr.length === 0){
+      var empty = document.createElement('span');
+      empty.className = 'ootd-empty';
+      empty.textContent = '尚未新增';
+      container.appendChild(empty);
+      return;
+    }
+    arr.forEach(function(val, idx){
+      var chip = document.createElement('span');
+      chip.className = 'ootd-chip';
+      var txt = document.createElement('span');
+      txt.textContent = val;
+      var del = document.createElement('button');
+      del.textContent = '×';
+      del.addEventListener('click', function(){
+        arr.splice(idx, 1);
+        save();
+        renderPanels();
+        renderSummary();
+      });
+      chip.appendChild(txt);
+      chip.appendChild(del);
+      container.appendChild(chip);
+    });
+  }
+
+  function renderPanels(){
+    panelsEl.innerHTML = '';
+    DAYS.forEach(function(d){
+      var panel = document.createElement('div');
+      panel.className = 'ootd-panel' + (d.key === activeDay ? ' active' : '');
+      CATS.forEach(function(c){
+        var row = document.createElement('div');
+        row.className = 'ootd-row';
+
+        var label = document.createElement('div');
+        label.className = 'ootd-label';
+        label.textContent = c.icon + ' ' + c.label;
+
+        var body = document.createElement('div');
+        var input = document.createElement('input');
+        input.className = 'ootd-input';
+        input.type = 'text';
+        input.placeholder = '輸入' + c.label + '名稱，按 Enter 新增';
+        input.addEventListener('keydown', function(e){
+          if (e.key === 'Enter' && input.value.trim() !== ''){
+            data[d.key][c.key].push(input.value.trim());
+            input.value = '';
+            save();
+            renderPanels();
+            renderSummary();
+          }
+        });
+        var chips = document.createElement('div');
+        chips.className = 'ootd-chips';
+        renderChips(chips, d.key, c.key);
+
+        body.appendChild(input);
+        body.appendChild(chips);
+        row.appendChild(label);
+        row.appendChild(body);
+        panel.appendChild(row);
+      });
+      panelsEl.appendChild(panel);
+    });
+  }
+
+  function renderSummary(){
+    var summaryBody = document.getElementById('ootdSummaryBody');
+    summaryBody.innerHTML = '';
+    var grandTotal = 0;
+    CATS.forEach(function(c){
+      var uniqueSet = {};
+      DAYS.forEach(function(d){
+        data[d.key][c.key].forEach(function(val){
+          var norm = val.trim().toLowerCase();
+          if (norm) uniqueSet[norm] = val.trim();
+        });
+      });
+      var names = Object.keys(uniqueSet).map(function(k){ return uniqueSet[k]; });
+      grandTotal += names.length;
+
+      var row = document.createElement('div');
+      row.className = 'ootd-sum-row';
+      var left = document.createElement('span');
+      left.textContent = c.icon + ' ' + c.label + (names.length ? '：' + names.join('、') : '：尚未新增');
+      var right = document.createElement('span');
+      right.className = 'cnt';
+      right.textContent = names.length + ' 件';
+      row.appendChild(left);
+      row.appendChild(right);
+      summaryBody.appendChild(row);
+    });
+
+    var totalRow = document.createElement('div');
+    totalRow.className = 'ootd-sum-total';
+    var totalLabel = document.createElement('span');
+    totalLabel.textContent = '總計要帶（已扣除重複穿搭）';
+    var totalCnt = document.createElement('span');
+    totalCnt.className = 'cnt';
+    totalCnt.textContent = grandTotal + ' 件';
+    totalRow.appendChild(totalLabel);
+    totalRow.appendChild(totalCnt);
+    summaryBody.appendChild(totalRow);
+  }
+
+  renderTabs();
+  renderPanels();
+  renderSummary();
+})();
+</script>
 
 </body>
 </html>
