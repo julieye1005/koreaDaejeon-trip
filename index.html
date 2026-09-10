@@ -225,9 +225,20 @@
   .meal-strip .meal-label{font-size:11px; letter-spacing:0.08em; color:var(--ginkgo); display:block; margin-bottom:6px;}
   .meal-strip .meal-val{font-size:14px;}
 
-  .day-nav{display:flex; justify-content:space-between; margin-top:44px; font-size:14px;}
-  .day-nav a{color:var(--maple); text-decoration:none;}
-  .day-nav a:hover{text-decoration:underline;}
+  .day-nav{display:flex; justify-content:space-between; align-items:center; margin-top:44px; font-size:14px; gap:10px; flex-wrap:wrap;}
+  .day-nav-btn{
+    display:inline-flex; align-items:center; justify-content:center;
+    color:var(--maple); text-decoration:none;
+    border:1px solid var(--maple);
+    border-radius:30px;
+    padding:9px 20px;
+    font-family:"Noto Serif TC",serif;
+    font-size:13.5px;
+    transition:background .2s, color .2s;
+    white-space:nowrap;
+  }
+  .day-nav-btn:hover{background:var(--maple); color:#FBF7EC;}
+  .day-nav-btn.ghost{visibility:hidden;}
 
   /* ---------- packing ---------- */
   .pack-alert{
@@ -398,6 +409,106 @@
   }
   .map-link:hover{color:var(--maple-deep); border-color:var(--maple-deep);}
 
+  /* ---------- expense tracker ---------- */
+  .expense-form{
+    display:grid;
+    grid-template-columns:90px 70px 1fr 110px 70px;
+    gap:10px; align-items:center;
+    background:var(--card); border:1px solid var(--line);
+    padding:18px 20px; margin-bottom:20px;
+  }
+  @media(max-width:680px){.expense-form{grid-template-columns:1fr 1fr; grid-template-areas:"amt cur" "desc desc" "type add";}}
+  .expense-form input, .expense-form select{
+    padding:8px 10px; font-size:14px;
+    border:1px solid var(--line); background:var(--paper);
+    font-family:"Noto Sans TC",sans-serif; color:var(--ink);
+  }
+  .expense-form input:focus, .expense-form select:focus{outline:none; border-color:var(--maple);}
+  .expense-add-btn{
+    background:var(--maple); color:#FBF7EC; border:none;
+    padding:9px 10px; cursor:pointer; font-size:14px;
+    font-family:"Noto Sans TC",sans-serif;
+    transition:background .2s;
+  }
+  .expense-add-btn:hover{background:var(--maple-deep);}
+
+  .expense-list{background:var(--card); border:1px solid var(--line); margin-bottom:24px;}
+  .expense-row{
+    display:flex; align-items:center; justify-content:space-between;
+    gap:12px; padding:14px 20px; border-bottom:1px solid var(--line);
+    font-size:14px;
+  }
+  .expense-row:last-child{border-bottom:none;}
+  .expense-row .desc{flex:1; color:var(--ink);}
+  .expense-tag{
+    font-size:11px; padding:2px 9px; border-radius:20px;
+    white-space:nowrap;
+  }
+  .expense-tag.personal{background:rgba(60,74,52,0.12); color:var(--pine);}
+  .expense-tag.shared{background:rgba(207,154,46,0.16); color:#93700f;}
+  .expense-row .amt{
+    font-family:"Cormorant Garamond",serif; font-size:18px; color:var(--maple);
+    white-space:nowrap;
+  }
+  .expense-row .del{
+    border:none; background:none; color:var(--ink-soft);
+    cursor:pointer; font-size:16px; padding:0 4px;
+  }
+  .expense-row .del:hover{color:var(--maple);}
+  .expense-empty{padding:20px; text-align:center; color:var(--ink-soft); font-size:13.5px;}
+
+  .expense-summary{
+    background:var(--card); border:1px solid var(--maple); padding:22px 26px;
+  }
+  .expense-summary h3{margin:0 0 14px; font-size:16px; font-family:"Noto Serif TC",serif;}
+  .expense-cur-block{margin-bottom:18px;}
+  .expense-cur-block:last-child{margin-bottom:0;}
+  .expense-cur-title{font-size:13px; color:var(--ginkgo); margin-bottom:8px; letter-spacing:0.04em;}
+  .expense-sum-row{
+    display:flex; justify-content:space-between; padding:6px 0;
+    font-size:14px; border-bottom:1px dashed var(--line);
+  }
+  .expense-sum-row:last-child{border-bottom:none;}
+  .expense-sum-row .v{font-family:"Cormorant Garamond",serif; font-size:17px; color:var(--ink);}
+  .expense-sum-row.grand{
+    margin-top:8px; padding-top:10px; border-top:1px solid var(--line); border-bottom:none;
+  }
+  .expense-sum-row.grand .v{font-size:24px; color:var(--maple);}
+
+  /* ---------- nearby cafes ---------- */
+  .cafe-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:18px;}
+  @media(max-width:640px){.cafe-grid{grid-template-columns:1fr;}}
+  .cafe-card{
+    background:var(--card); border:1px solid var(--line);
+    padding:22px 24px; position:relative;
+  }
+  .cafe-card::before{
+    content:""; position:absolute; top:0; left:0; width:100%; height:3px;
+    background:linear-gradient(90deg,var(--ginkgo),var(--maple));
+  }
+  .cafe-card h4{margin:0 0 6px; font-size:16.5px; font-family:"Noto Serif TC",serif; color:var(--ink);}
+  .cafe-card .style-tag{
+    font-size:12px; color:var(--maple); margin-bottom:10px; display:block;
+  }
+  .cafe-card p{margin:4px 0; font-size:13.5px; color:var(--ink-soft);}
+  .cafe-card .dist{
+    display:inline-block; margin-top:10px; font-size:12px;
+    color:var(--pine); background:var(--paper-deep); padding:4px 10px;
+  }
+
+  /* ---------- illustrative map ---------- */
+  .area-map-wrap{
+    background:var(--card); border:1px solid var(--line);
+    padding:20px; margin-bottom:28px;
+  }
+  .area-map-wrap svg{width:100%; height:auto; display:block;}
+  .area-map-legend{
+    display:flex; gap:20px; flex-wrap:wrap;
+    margin-top:14px; font-size:12.5px; color:var(--ink-soft);
+  }
+  .area-map-legend span{display:inline-flex; align-items:center; gap:6px;}
+  .area-map-note{font-size:11.5px; color:var(--ink-soft); margin-top:10px; text-align:center;}
+
   footer{
     text-align:center; padding:50px 24px 70px; color:var(--ink-soft); font-size:13px;
   }
@@ -419,6 +530,8 @@
 
 <nav id="topnav">
   <a href="#info">重要資訊</a>
+  <a href="#hotel-cafes">住宿周邊咖啡</a>
+  <a href="#hotel-food">住宿周邊美食</a>
   <a href="#overview">行程簡介</a>
   <a href="#day1">10/9(五)</a>
   <a href="#day2">10/10(六)</a>
@@ -428,6 +541,7 @@
   <a href="#budget">旅費總覽</a>
   <a href="#outfit">每日穿搭</a>
   <a href="#ootd">OOTD規劃</a>
+  <a href="#expense">記帳分帳</a>
   <a href="#prep">行前準備</a>
   <a href="#packing">提醒事項</a>
 </nav>
@@ -438,7 +552,7 @@
   <svg class="deco-leaf" style="width:34px; bottom:20px; left:14%; color:var(--ginkgo-light); transform:rotate(-8deg);"><use href="#ginkgo-leaf"/></svg>
   <svg class="deco-leaf" style="width:40px; bottom:40px; right:16%; color:var(--maple-deep); transform:rotate(10deg);"><use href="#maple-leaf"/></svg>
 
-  <span class="eyebrow">SISTERS' AUTUMN JOURNEY · KOREA</span>
+  <span class="eyebrow">ECHO &amp; MONA'S AUTUMN JOURNEY · KOREA</span>
   <h1>楓紅落於<span class="r">大田</span>，<br>金杏灑於<span class="g">世宗</span></h1>
   <p class="sub">兩姊妹的五天四夜韓國中部漫遊。清州進出，大田為家，順道赴一場婚禮，也順道追一場秋天。</p>
   <div class="dates">
@@ -478,6 +592,158 @@
       <p class="big">TWD 3,704.29<span class="sub-cur" style="font-size:12px;">／人</span></p>
       <p>總額 TWD 7,408.57，兩人平分</p>
       <a class="map-link" href="https://map.naver.com/p/search/38%20Dunsan-ro%2073beon-gil%2C%20Daejeon" target="_blank" rel="noopener">📍 在 Naver Map 開啟</a>
+    </div>
+  </div>
+</section>
+
+<section id="hotel-cafes">
+  <div class="section-head">
+    <span class="kicker">Steps from the hotel</span>
+    <h2>住宿周邊絕美咖啡廳</h2>
+  </div>
+  <p style="color:var(--ink-soft); font-size:14px; margin-top:-16px; margin-bottom:28px;">大田屯山洞是年輕人的潮流地標，飯店步行3–8分鐘內就有好幾間質感咖啡廳，早餐或晚上想找個地方坐坐都很方便。</p>
+
+  <div class="area-map-wrap">
+    <svg viewBox="0 0 700 540" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="350" cy="270" r="170" fill="none" stroke="var(--line)" stroke-width="1" stroke-dasharray="4 5"/>
+      <circle cx="350" cy="270" r="34" fill="var(--pine)"/>
+      <text x="350" y="266" text-anchor="middle" font-size="18" fill="#FBF7EC">🏨</text>
+      <text x="350" y="316" text-anchor="middle" font-size="13" fill="var(--pine)" font-family="Noto Serif TC, serif">住宿</text>
+
+      <!-- cafes: ginkgo -->
+      <g font-family="Noto Sans TC, sans-serif">
+        <circle cx="350" cy="100" r="24" fill="var(--ginkgo)"/>
+        <text x="350" y="106" text-anchor="middle" font-size="16">☕</text>
+        <text x="350" y="70" text-anchor="middle" font-size="12.5" fill="var(--ink)">리셉션</text>
+        <text x="350" y="140" text-anchor="middle" font-size="11" fill="var(--ink-soft)">5分</text>
+
+        <circle cx="517" cy="240" r="24" fill="var(--ginkgo)"/>
+        <text x="517" y="246" text-anchor="middle" font-size="16">☕</text>
+        <text x="580" y="234" text-anchor="middle" font-size="12.5" fill="var(--ink)">슬리피타운</text>
+        <text x="580" y="252" text-anchor="middle" font-size="11" fill="var(--ink-soft)">6分</text>
+
+        <circle cx="408" cy="430" r="24" fill="var(--ginkgo)"/>
+        <text x="408" y="436" text-anchor="middle" font-size="16">☕</text>
+        <text x="408" y="475" text-anchor="middle" font-size="12.5" fill="var(--ink)">프랭크커핀바</text>
+        <text x="408" y="491" text-anchor="middle" font-size="11" fill="var(--ink-soft)">4分</text>
+
+        <circle cx="203" cy="355" r="24" fill="var(--ginkgo)"/>
+        <text x="203" y="361" text-anchor="middle" font-size="16">☕</text>
+        <text x="140" y="378" text-anchor="middle" font-size="12.5" fill="var(--ink)">롤라리틀베이커리</text>
+        <text x="140" y="394" text-anchor="middle" font-size="11" fill="var(--ink-soft)">5分</text>
+
+        <!-- food: maple -->
+        <circle cx="459" cy="140" r="24" fill="var(--maple)"/>
+        <text x="459" y="146" text-anchor="middle" font-size="16">🍜</text>
+        <text x="530" y="128" text-anchor="middle" font-size="12.5" fill="var(--ink)">대선칼국수</text>
+        <text x="530" y="146" text-anchor="middle" font-size="11" fill="var(--ink-soft)">5–7分</text>
+
+        <circle cx="497" cy="355" r="24" fill="var(--maple)"/>
+        <text x="497" y="361" text-anchor="middle" font-size="16">🧀</text>
+        <text x="560" y="375" text-anchor="middle" font-size="12.5" fill="var(--ink)">설해돈본점</text>
+        <text x="560" y="393" text-anchor="middle" font-size="11" fill="var(--ink-soft)">4–6分</text>
+
+        <circle cx="292" cy="430" r="24" fill="var(--maple)"/>
+        <text x="292" y="436" text-anchor="middle" font-size="16">🌶️</text>
+        <text x="292" y="475" text-anchor="middle" font-size="12.5" fill="var(--ink)">손의손본점</text>
+        <text x="292" y="491" text-anchor="middle" font-size="11" fill="var(--ink-soft)">6分</text>
+
+        <circle cx="183" cy="240" r="24" fill="var(--maple)"/>
+        <text x="183" y="246" text-anchor="middle" font-size="16">🍝</text>
+        <text x="120" y="228" text-anchor="middle" font-size="12.5" fill="var(--ink)">이태리국시</text>
+        <text x="120" y="246" text-anchor="middle" font-size="11" fill="var(--ink-soft)">5分</text>
+
+        <circle cx="241" cy="140" r="24" fill="var(--maple)"/>
+        <text x="241" y="146" text-anchor="middle" font-size="16">🍢</text>
+        <text x="170" y="128" text-anchor="middle" font-size="12.5" fill="var(--ink)">떡반집본점</text>
+        <text x="170" y="146" text-anchor="middle" font-size="11" fill="var(--ink-soft)">7–9分</text>
+      </g>
+    </svg>
+    <div class="area-map-legend">
+      <span>🟡 咖啡廳</span>
+      <span>🔴 美食餐廳</span>
+      <span>🟢 住宿位置</span>
+    </div>
+    <div class="area-map-note">※ 示意方位圖，非精確地圖比例，實際路線請點下方各店名的 Naver Map 連結</div>
+  </div>
+
+  <div class="cafe-grid">
+    <div class="cafe-card">
+      <h4>☕ 리셉션 Reception（3樓）</h4>
+      <span class="style-tag">歐洲古典文藝風</span>
+      <p>超大採光落地窗＋溫暖木質古董裝潢，安靜優雅，適合拍照、放空或聊天。</p>
+      <p>招牌：法式鮮酪甜點「크렘당쥬 Crème d'Anjou」、手沖咖啡與質感早午餐</p>
+      <span class="dist">🚶 步行約5分鐘</span><br>
+      <a class="map-link" href="https://map.naver.com/p/search/%EB%8C%80%EC%A0%84%20%EB%91%94%EC%82%B0%EB%8F%99%20%EB%A6%AC%EC%85%89%EC%85%98%20%EC%B9%B4%ED%8E%98" target="_blank" rel="noopener">📍 在 Naver Map 開啟</a>
+    </div>
+    <div class="cafe-card">
+      <h4>☕ 슬리피타운 Sleepy Town（2樓）</h4>
+      <span class="style-tag">韓系高質感極簡木質風</span>
+      <p>一整面面向綠意樹木的通透大窗，陽光灑進來質感絕佳，在地年輕人推崇的隱藏版名店。</p>
+      <p>招牌：精緻美式特調咖啡、手作司康與巴斯克乳酪蛋糕</p>
+      <span class="dist">🚶 步行約6分鐘</span><br>
+      <a class="map-link" href="https://map.naver.com/p/search/%EB%8C%80%EC%A0%84%20%EB%91%94%EC%82%B0%EB%8F%99%20%EC%8A%AC%EB%A6%AC%ED%94%BC%ED%83%80%EC%9A%B4" target="_blank" rel="noopener">📍 在 Naver Map 開啟</a>
+    </div>
+    <div class="cafe-card">
+      <h4>☕ 프랭크커핀바 Frank Coffin Bar（屯山店）</h4>
+      <span class="style-tag">復古爵士黑膠風</span>
+      <p>暗調沉穩的歐洲老酒吧氛圍，木質吧台配柔和燈光，拍照浪漫有質感。</p>
+      <p>招牌：招牌「Frank Coffee」濃郁綿密鮮奶油咖啡、各式現烤鬆餅（Croffle）</p>
+      <span class="dist">🚶 步行約4分鐘</span><br>
+      <a class="map-link" href="https://map.naver.com/p/search/%ED%94%84%EB%9E%AD%ED%81%AC%EC%BB%A4%ED%95%80%EB%B0%94%20%EB%8C%80%EC%A0%84%EB%91%94%EC%82%B0%EC%A0%90" target="_blank" rel="noopener">📍 在 Naver Map 開啟</a>
+    </div>
+    <div class="cafe-card">
+      <h4>☕ 롤라리틀베이커리 Lolla Little Bakery（屯山）</h4>
+      <span class="style-tag">南法鄉村溫馨小木屋風</span>
+      <p>溫暖木質調搭配歐式玻璃窗與溫柔日光，濃濃法式田園療癒感。</p>
+      <p>招牌：現烤鹽可頌（소금빵）、貝果與濃郁抹茶飲品</p>
+      <span class="dist">🚶 步行約5分鐘</span><br>
+      <a class="map-link" href="https://map.naver.com/p/search/%EB%A1%A4%EB%9D%BC%EB%A6%AC%ED%8B%80%EB%B2%A0%EC%9D%B4%EC%BB%A4%EB%A6%AC%20%EB%91%94%EC%82%B0" target="_blank" rel="noopener">📍 在 Naver Map 開啟</a>
+    </div>
+  </div>
+</section>
+
+<section id="hotel-food">
+  <div class="section-head">
+    <span class="kicker">Steps from the hotel</span>
+    <h2>住宿周邊美食名店</h2>
+  </div>
+  <p style="color:var(--ink-soft); font-size:14px; margin-top:-16px; margin-bottom:28px;">屯山洞是大田流行美食與老字號的一級戰區，飯店步行3–10分鐘範圍內就有這些在地人推崇的名店，行程排不進去時也可以隨時來補一餐。</p>
+  <div class="cafe-grid">
+    <div class="cafe-card">
+      <h4>🍜 대선칼국수 大鮮刀削麵</h4>
+      <span class="style-tag">1954年創立・70年老字號</span>
+      <p>大田「刀削麵之城」最富盛名的元老級排隊名店，多個韓國節目報導過。招牌蛤蜊甘甜大骨湯刀削麵，必點오징어두루치기（辣炒烏賊）配수육（軟嫩白切豬肉）一起吃。</p>
+      <span class="dist">🚶 步行約5–7分鐘</span><br>
+      <a class="map-link" href="https://map.naver.com/p/search/%EB%8C%80%EC%84%A0%EC%B9%BC%EA%B5%AD%EC%88%98%20%EB%91%94%EC%82%B0" target="_blank" rel="noopener">📍 在 Naver Map 開啟</a>
+    </div>
+    <div class="cafe-card">
+      <h4>🧀 설해돈 본점 雪海豚本店</h4>
+      <span class="style-tag">屯山洞原創名物</span>
+      <p>매갈가스（起司辣燉排骨豬排）——韓式辣燉豬排骨結合酥脆厚切起司豬排，濃郁辛辣又牽絲，年輕族群超愛。位於 Galleria 百貨周邊。</p>
+      <span class="dist">🚶 步行約4–6分鐘</span><br>
+      <a class="map-link" href="https://map.naver.com/p/search/%EC%84%A4%ED%95%B4%EB%8F%88%20%EB%B3%B8%EC%A0%90%20%EB%91%94%EC%82%B0" target="_blank" rel="noopener">📍 在 Naver Map 開啟</a>
+    </div>
+    <div class="cafe-card">
+      <h4>🌶️ 손의손 본점 手之手本店</h4>
+      <span class="style-tag">Google評價4.8・排隊名店</span>
+      <p>直火주꾸미볶음（炭香辣炒小章魚）香氣十足，配黃豆芽包紫菜或拌飯超美味；怕辣也可以點양지온면（牛肉大骨湯溫麵）解辣搭配。</p>
+      <span class="dist">🚶 步行約6分鐘</span><br>
+      <a class="map-link" href="https://map.naver.com/p/search/%EC%86%90%EC%9D%98%EC%86%90%20%EB%B3%B8%EC%A0%90%20%EB%91%94%EC%82%B0" target="_blank" rel="noopener">📍 在 Naver Map 開啟</a>
+    </div>
+    <div class="cafe-card">
+      <h4>🍝 이태리국시 본점 義大利國匙本店</h4>
+      <span class="style-tag">韓式創意融合義式料理冠軍店</span>
+      <p>韓式傳統食材（炭火大腸、烤牛小排、荏子油）結合義大利麵與披薩。必點숯불대창 돌솥파스타（炭火大腸石鍋義大利麵）、숯불갈비 쌈피자，環境高級現代，適合姊妹約會。</p>
+      <span class="dist">🚶 步行約5分鐘</span><br>
+      <a class="map-link" href="https://map.naver.com/p/search/%EC%9D%B4%ED%83%9C%EB%A6%AC%EA%B5%AD%EC%8B%9C%20%EB%B3%B8%EC%A0%90%20%EB%91%94%EC%82%B0" target="_blank" rel="noopener">📍 在 Naver Map 開啟</a>
+    </div>
+    <div class="cafe-card">
+      <h4>🍢 떡반집 본점 餅班家本店</h4>
+      <span class="style-tag">昭和復古風小吃・Google評分4.4</span>
+      <p>大田在地人從小吃到大的懷舊小吃店。主打湯汁滿滿的치즈떡반（起司湯年糕）與爆漿계란토스트（厚蛋吐司），鹹甜帶勁，價格便宜，適合當宵夜或下午點心。</p>
+      <span class="dist">🚶 步行約7–9分鐘</span><br>
+      <a class="map-link" href="https://map.naver.com/p/search/%EB%96%A1%EB%B0%98%EC%A7%91%20%EB%B3%B8%EC%A0%90%20%EB%91%94%EC%82%B0" target="_blank" rel="noopener">📍 在 Naver Map 開啟</a>
     </div>
   </div>
 </section>
@@ -554,7 +820,11 @@
     <div><span class="meal-label">晚餐</span><span class="meal-val">吳氏刀削麵오씨칼국수</span></div>
   </div>
 
-  <div class="day-nav"><span></span><a href="#day2">下一天 →</a></div>
+  <div class="day-nav">
+    <span class="day-nav-btn ghost">← 上一天</span>
+    <a class="day-nav-btn" href="#overview">回行程一覽</a>
+    <a class="day-nav-btn" href="#day2">下一天 →</a>
+  </div>
 </section>
 
 <!-- DAY 2 -->
@@ -578,10 +848,19 @@
       <a class="map-link" href="https://map.naver.com/p/search/%EC%9C%A0%EC%84%B1%EC%98%A8%EC%B2%9C%EA%B3%B5%EC%9B%90" target="_blank" rel="noopener">📍 在 Naver Map 開啟</a>
     </div>
     <div class="t-item">
+      <div class="t-time">午後</div>
+      <div class="t-title">☕ Coffee Interview 커피인터뷰</div>
+      <div class="t-desc">同在儒城區，跟溫泉公園順路，適合泡完腳坐下來喝杯咖啡休息。</div>
+      <div class="t-tips">地址：대전 유성구 한밭대로371번길 25-3</div>
+      <a class="map-link" href="https://map.naver.com/p/search/%EB%8C%80%EC%A0%84%20%EC%9C%A0%EC%84%B1%EA%B5%AC%20%ED%95%9C%EB%B0%AD%EB%8C%80%EB%A1%9C371%EB%B2%88%EA%B8%B8%2025-3" target="_blank" rel="noopener">📍 在 Naver Map 開啟</a>
+    </div>
+    <div class="t-item">
       <div class="t-time">下午</div>
       <div class="t-title">☕ 蘇堤洞咖啡街 → 大田中央市場 → 銀杏洞文化街</div>
       <div class="t-desc">一路散步逛過去，順道感受大田的生活氣息。</div>
+      <div class="t-desc">推薦落腳「풍류소제 風流蘇堤」，蘇堤洞人氣咖啡店，很適合走累了坐下來喝一杯。</div>
       <a class="map-link" href="https://map.naver.com/p/search/%EC%86%8C%EC%A0%9C%EB%8F%99%20%EC%B9%B4%ED%8E%98%EA%B1%B0%EB%A6%AC" target="_blank" rel="noopener">📍 蘇堤洞咖啡街 Naver Map</a>
+      <a class="map-link" href="https://map.naver.com/p/search/%ED%92%8D%EB%A5%98%EC%86%8C%EC%A0%9C" target="_blank" rel="noopener" style="margin-left:12px;">📍 風流蘇堤 Naver Map</a>
     </div>
     <div class="t-item">
       <div class="t-time">傍晚</div>
@@ -601,7 +880,11 @@
     <div><span class="meal-label">晚餐</span><span class="meal-val">蘇堤洞／銀杏洞周邊自由選擇</span></div>
   </div>
 
-  <div class="day-nav"><a href="#day1">← 上一天</a><a href="#day3">下一天 →</a></div>
+  <div class="day-nav">
+    <a class="day-nav-btn" href="#day1">← 上一天</a>
+    <a class="day-nav-btn" href="#overview">回行程一覽</a>
+    <a class="day-nav-btn" href="#day3">下一天 →</a>
+  </div>
 </section>
 
 <!-- DAY 3 -->
@@ -650,10 +933,14 @@
   <div class="meal-strip">
     <div><span class="meal-label">早餐</span><span class="meal-val">大田自理</span></div>
     <div><span class="meal-label">午餐</span><span class="meal-val">1972 宋恩貞麥飯石鍋拌飯總店</span></div>
-    <div><span class="meal-label">晚餐</span><span class="meal-val">世宗韓文節慶典市集／返程後自理</span></div>
+    <div><span class="meal-label">晚餐</span><span class="meal-val">世宗韓文節慶典市集／返程後自理<br><span style="font-size:11.5px; color:var(--ink-soft);">備用：밥꽃한상（Doum 3-ro, Sejong）</span></span></div>
   </div>
 
-  <div class="day-nav"><a href="#day2">← 上一天</a><a href="#day4">下一天 →</a></div>
+  <div class="day-nav">
+    <a class="day-nav-btn" href="#day2">← 上一天</a>
+    <a class="day-nav-btn" href="#overview">回行程一覽</a>
+    <a class="day-nav-btn" href="#day4">下一天 →</a>
+  </div>
 </section>
 
 <!-- DAY 4 -->
@@ -679,16 +966,27 @@
       <div class="t-desc">搭乘20號公車前往，漫步水杉林步道與高空吊橋，秋日走在其中格外舒服。</div>
       <a class="map-link" href="https://map.naver.com/p/search/%EC%9E%A5%ED%83%9C%EC%82%B0%EC%9E%90%EC%97%B0%ED%9C%B4%EC%96%91%EB%A6%BC" target="_blank" rel="noopener">📍 長泰山自然休養林 Naver Map</a>
     </div>
+    <div class="t-item">
+      <div class="t-time">晚餐</div>
+      <div class="t-title">🥩 굽돌이 韓式烤肉</div>
+      <div class="t-desc">變漂亮又走完森林，晚上就好好吃頓烤肉犒賞自己。地址跟早上診所同一條大德大路上，回住宿也順路。</div>
+      <div class="t-tips">地址：대전 서구 대덕대로185번길 62（大田西區大德大路185番街62號）</div>
+      <a class="map-link" href="https://map.naver.com/p/search/%EB%8C%80%EC%A0%84%20%EC%84%9C%EA%B5%AC%20%EB%8C%80%EB%8D%95%EB%8C%80%EB%A1%9C185%EB%B2%88%EA%B8%B8%2062" target="_blank" rel="noopener">📍 在 Naver Map 開啟</a>
+    </div>
 
   </div>
 
   <div class="meal-strip">
     <div><span class="meal-label">早餐</span><span class="meal-val">大田自理</span></div>
     <div><span class="meal-label">午餐</span><span class="meal-val">大田市區自由選擇</span></div>
-    <div><span class="meal-label">晚餐</span><span class="meal-val">大田市區自由選擇</span></div>
+    <div><span class="meal-label">晚餐</span><span class="meal-val">굽돌이 韓式烤肉</span></div>
   </div>
 
-  <div class="day-nav"><a href="#day3">← 上一天</a><a href="#day5">下一天 →</a></div>
+  <div class="day-nav">
+    <a class="day-nav-btn" href="#day3">← 上一天</a>
+    <a class="day-nav-btn" href="#overview">回行程一覽</a>
+    <a class="day-nav-btn" href="#day5">下一天 →</a>
+  </div>
 </section>
 
 <!-- DAY 5 -->
@@ -736,7 +1034,11 @@
     <div><span class="meal-label">晚餐</span><span class="meal-val">機場內自理（回程無供餐）</span></div>
   </div>
 
-  <div class="day-nav"><a href="#day4">← 上一天</a><span></span></div>
+  <div class="day-nav">
+    <a class="day-nav-btn" href="#day4">← 上一天</a>
+    <a class="day-nav-btn" href="#overview">回行程一覽</a>
+    <span class="day-nav-btn ghost">下一天 →</span>
+  </div>
 </section>
 
 <section id="budget">
@@ -855,6 +1157,35 @@
   <div class="ootd-summary">
     <h3>🧳 打包統計</h3>
     <div id="ootdSummaryBody"></div>
+  </div>
+</section>
+
+<section id="expense">
+  <div class="section-head">
+    <span class="kicker">Track your spending</span>
+    <h2>記帳 ＆ 分帳</h2>
+  </div>
+  <p style="color:var(--ink-soft); font-size:14px; margin-top:-16px; margin-bottom:24px;">每筆消費選擇是「個人消費」還是跟妹妹「均分消費」，均分的部分會自動幫你算出每人負擔多少。</p>
+
+  <div class="expense-form">
+    <input type="number" id="expAmount" placeholder="金額" step="0.01">
+    <select id="expCurrency">
+      <option value="₩">₩ 韓元</option>
+      <option value="NT$">NT$ 台幣</option>
+    </select>
+    <input type="text" id="expDesc" placeholder="項目說明（例如：晚餐、伴手禮）">
+    <select id="expType">
+      <option value="personal">個人消費</option>
+      <option value="shared">均分消費</option>
+    </select>
+    <button class="expense-add-btn" id="expAddBtn">新增</button>
+  </div>
+
+  <div class="expense-list" id="expenseList"></div>
+
+  <div class="expense-summary">
+    <h3>💰 花費統計</h3>
+    <div id="expenseSummary"></div>
   </div>
 </section>
 
@@ -1113,6 +1444,152 @@
 
   renderTabs();
   renderPanels();
+  renderSummary();
+})();
+
+(function(){
+  var EXP_KEY = 'korea-trip-expenses';
+  var CURRENCIES = ['₩', 'NT$'];
+  var entries = [];
+  try { entries = JSON.parse(localStorage.getItem(EXP_KEY) || '[]'); } catch(e) { entries = []; }
+
+  var listEl = document.getElementById('expenseList');
+  var summaryEl = document.getElementById('expenseSummary');
+  var amountInput = document.getElementById('expAmount');
+  var currencySelect = document.getElementById('expCurrency');
+  var descInput = document.getElementById('expDesc');
+  var typeSelect = document.getElementById('expType');
+  var addBtn = document.getElementById('expAddBtn');
+
+  function save(){
+    try { localStorage.setItem(EXP_KEY, JSON.stringify(entries)); } catch(e) {}
+  }
+
+  function fmt(n){
+    return n.toLocaleString('zh-Hant', {minimumFractionDigits:0, maximumFractionDigits:2});
+  }
+
+  function renderList(){
+    listEl.innerHTML = '';
+    if (entries.length === 0){
+      var empty = document.createElement('div');
+      empty.className = 'expense-empty';
+      empty.textContent = '目前還沒有記帳紀錄，從上面新增第一筆吧。';
+      listEl.appendChild(empty);
+      return;
+    }
+    entries.slice().reverse().forEach(function(entry){
+      var row = document.createElement('div');
+      row.className = 'expense-row';
+
+      var desc = document.createElement('span');
+      desc.className = 'desc';
+      desc.textContent = entry.desc || '（未命名項目）';
+
+      var tag = document.createElement('span');
+      tag.className = 'expense-tag ' + (entry.type === 'shared' ? 'shared' : 'personal');
+      tag.textContent = entry.type === 'shared' ? '均分' : '個人';
+
+      var amt = document.createElement('span');
+      amt.className = 'amt';
+      amt.textContent = entry.currency + fmt(entry.amount);
+
+      var del = document.createElement('button');
+      del.className = 'del';
+      del.textContent = '×';
+      del.addEventListener('click', function(){
+        entries = entries.filter(function(e){ return e.id !== entry.id; });
+        save();
+        renderList();
+        renderSummary();
+      });
+
+      row.appendChild(desc);
+      row.appendChild(tag);
+      row.appendChild(amt);
+      row.appendChild(del);
+      listEl.appendChild(row);
+    });
+  }
+
+  function renderSummary(){
+    summaryEl.innerHTML = '';
+    var any = false;
+    CURRENCIES.forEach(function(cur){
+      var personal = 0, shared = 0;
+      entries.forEach(function(e){
+        if (e.currency !== cur) return;
+        if (e.type === 'shared') shared += e.amount; else personal += e.amount;
+      });
+      if (personal === 0 && shared === 0) return;
+      any = true;
+      var sharedPerPerson = shared / 2;
+      var grand = personal + sharedPerPerson;
+
+      var block = document.createElement('div');
+      block.className = 'expense-cur-block';
+
+      var title = document.createElement('div');
+      title.className = 'expense-cur-title';
+      title.textContent = cur + ' 幣別';
+      block.appendChild(title);
+
+      function row(label, val){
+        var r = document.createElement('div');
+        r.className = 'expense-sum-row';
+        var l = document.createElement('span');
+        l.textContent = label;
+        var v = document.createElement('span');
+        v.className = 'v';
+        v.textContent = cur + fmt(val);
+        r.appendChild(l); r.appendChild(v);
+        return r;
+      }
+
+      block.appendChild(row('個人消費小計', personal));
+      block.appendChild(row('均分消費小計（兩人合計）', shared));
+      block.appendChild(row('均分消費・我的一半', sharedPerPerson));
+
+      var grandRow = row('我總共花了', grand);
+      grandRow.className = 'expense-sum-row grand';
+      block.appendChild(grandRow);
+
+      summaryEl.appendChild(block);
+    });
+    if (!any){
+      var empty = document.createElement('div');
+      empty.className = 'expense-empty';
+      empty.textContent = '還沒有任何花費紀錄。';
+      summaryEl.appendChild(empty);
+    }
+  }
+
+  function addEntry(){
+    var amount = parseFloat(amountInput.value);
+    if (isNaN(amount) || amount <= 0) return;
+    entries.push({
+      id: Date.now() + '-' + Math.random().toString(36).slice(2),
+      amount: amount,
+      currency: currencySelect.value,
+      desc: descInput.value.trim(),
+      type: typeSelect.value
+    });
+    save();
+    amountInput.value = '';
+    descInput.value = '';
+    renderList();
+    renderSummary();
+    amountInput.focus();
+  }
+
+  addBtn.addEventListener('click', addEntry);
+  [amountInput, descInput].forEach(function(el){
+    el.addEventListener('keydown', function(e){
+      if (e.key === 'Enter') addEntry();
+    });
+  });
+
+  renderList();
   renderSummary();
 })();
 </script>
